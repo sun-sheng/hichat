@@ -1,0 +1,51 @@
+<div class="page" ng-controller="settingsCtrl">
+    <navbar title="设置"></navbar>
+    <div class="page-content">
+        <ul class="list mt-15">
+
+            <li class="list-item" >
+                <!-- -->
+                <div class="item-content" ng-show="ui.alert.update.visible" ng-click="download(ui.alert.update.url)">
+                    <div class="item-before">
+                        <i class="ico-download"></i>
+                    </div>
+                    <div class="item-inner color-primary">
+                        点击下载新版本 v{{ui.alert.update.version}}
+                    </div>
+                </div>
+                <div class="item-content" ng-hide="ui.alert.update.visible" ng-click="checkUpdate()">
+                    <div class="item-before">
+                        <i class="ico-refresh"></i>
+                    </div>
+                    <div class="item-inner">
+                        检查更新
+                    </div>
+                </div>
+            </li>
+
+            <li class="list-item" >
+                <div class="item-content" ng-click="clearCache()">
+                    <div class="item-before">
+                        <i class="ico-trash"></i>
+                    </div>
+                    <div class="item-inner">
+                        清除缓存
+                    </div>
+                </div>
+            </li>
+            <li class="list-item">
+                <a class="item-link" f7route="'about.html'">
+                    <div class="item-before">
+                        <i class="ico-info"></i>
+                    </div>
+                    <div class="item-inner">
+                        关于
+                    </div>
+                    <div class="item-after">
+                        <i class="ico-chevron-right font-16"></i>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

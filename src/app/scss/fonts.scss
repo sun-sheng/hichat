@@ -1,0 +1,162 @@
+@font-face
+{
+    font-family: 'lcd';
+    src: url('app/fonts/lcd.woff') format('woff'),
+    url('app/fonts/lcd.ttf') format('truetype');
+}
+
+@font-face
+{
+    font-family: 'ico';
+    src: url('app/fonts/ico.ttf') format('truetype'),
+    url('app/fonts/ico.woff') format('woff');
+}
+
+[class^="ico-"], [class*=" ico-"]
+{
+    font-family: 'ico';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.ico-bk-actions:before {
+    content: "\e600";
+}
+.ico-bk-actions-outline:before {
+    content: "\e611";
+}
+.ico-bk-users:before {
+    content: "\e606";
+}
+.ico-bk-users-outline:before {
+    content: "\e605";
+}
+.ico-bk-user:before {
+    content: "\e609";
+}
+.ico-bk-user-outline:before {
+    content: "\e608";
+}
+.ico-bk-location:before {
+    content: "\e607";
+}
+.ico-info:before {
+    content: "\e601";
+}
+.ico-refresh:before {
+    content: "\e602";
+}
+.ico-trash:before {
+    content: "\e603";
+}
+.ico-setting:before {
+    content: "\e604";
+}
+.ico-download:before {
+    content: "\e612";
+}
+.ico-lock:before {
+    content: "\e60a";
+}
+.ico-arch:before {
+    content: "\e614";
+}
+.ico-telephone:before {
+    content: "\e60d";
+}
+.ico-mobile:before {
+    content: "\e619";
+}
+.ico-search:before {
+    content: "\e60b";
+}
+.ico-loading:before {
+    content: "\e610";
+}
+.ico-rst-toggle:before {
+    content: "\e616";
+}
+.ico-note:before {
+    content: "\e617";
+}
+.ico-rst-home:before {
+    content: "\e618";
+}
+.ico-rst-house:before {
+    content: "\e61a";
+}
+.ico-email:before {
+    content: "\f003";
+}
+.ico-times:before {
+    content: "\e60c";
+}
+.ico-checked:before {
+    content: "\e613";
+}
+.ico-close:before {
+    content: "\e615";
+}
+.ico-arrow-back:before {
+    content: "\e60e";
+}
+.ico-arrow-forward:before {
+    content: "\e60f";
+}
+.ico-gps-fixed:before {
+    content: "\e61c";
+}
+.ico-equalizer:before {
+    content: "\e61b";
+}
+.ico-restaurant-menu:before {
+    content: "\e61d";
+}
+.ico-assignment:before {
+    content: "\e61e";
+}
+.ico-message:before {
+    content: "\e61f";
+}
+.ico-users:before {
+    content: "\e620";
+}
+.ico-actions:before {
+    content: "\e621";
+}
+.ico-me:before {
+    content: "\e622";
+}
+.ico-3rd-action:before {
+    content: "\e0ad";
+}
+.ico-forward:before {
+    content: "\e078";
+}
+.ico-angle-down:before {
+    content: "\e201";
+}
+.ico-angle-up:before {
+    content: "\e203";
+}
+.ico-chevron-left:before {
+    content: "\e207";
+}
+.ico-chevron-right:before {
+    content: "\e208";
+}
+.ico-chevron-up:before {
+    content: "\e20a";
+}
+.ico-chevron-down:before {
+    content: "\e20b";
+}
+
+

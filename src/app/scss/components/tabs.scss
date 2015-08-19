@@ -1,0 +1,153 @@
+.tabs-fixed-wrap
+{
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .tab-links
+    {
+        @include flex-box;
+        z-index: 9;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 44px;
+        border-bottom: 1px solid $color-border;
+
+        .tab-link
+        {
+            @include flex-box-item;
+            text-align: center;
+            line-height: 42px;
+            color: #999;
+            border-bottom: 2px solid transparent;
+            &.active
+            {
+                color: $color-primary;
+                border-bottom-color: $color-primary;
+            }
+            .item-icon
+            {
+                position: relative;
+            }
+            .item-label
+            {
+                position: relative;
+            }
+            .item-badge
+            {
+                position: absolute;
+                right: -16px;
+                top: 2px;
+                width: 16px;
+                line-height: 16px;
+                border-radius: 50%;
+                font-size: 12px;
+                text-align: center;
+                color: #fff;
+                background: $color-danger;
+            }
+        }
+    }
+
+    .tab-links + .tabs
+    {
+        padding-top: 44px;
+    }
+
+    .tab-links + .tabs-animated-wrap
+    {
+        padding-top: 44px;
+    }
+
+}
+
+.tabs
+{
+    @include border-box;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    .tab
+    {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+
+        .tab-navbar
+        {
+            z-index: 9;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 44px;
+            line-height: 44px;
+            background-color: $color-primary;
+            color: #fff;
+            font-size: 15px;
+            text-align: center;
+
+            .prev-link,
+            .next-link
+            {
+                top: 0;
+                font-size: 15px;
+                display: block;
+                position: absolute;
+                padding: 0 8px;
+            }
+            .prev-link
+            {
+                left: 0;
+            }
+            .next-link
+            {
+                right: 0;
+            }
+            .ion-back:before
+            {
+                content: "\f124";
+            }
+            .ion-prev:before
+            {
+                content: "\f124";
+            }
+            .ion-next:before
+            {
+                content: "\f125";
+            }
+            .ion-done:before
+            {
+                content: "\f109";
+            }
+        }
+        .tab-content
+        {
+            @include border-box;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+        }
+        .tab-navbar ~ .tab-content
+        {
+            padding-top: 44px;
+        }
+        .tab-toolbar + .tab-content
+        {
+            padding-bottom: 51px;
+        }
+        .tab-toolbar
+        {
+            position: absolute;
+            z-index: 2;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0 10px;
+            background-color: #efefef;
+            border-top: 1px solid $color-border;
+        }
+    }
+}

@@ -1,0 +1,75 @@
+<div class="user-info-page page" ng-controller="userInfoCtrl">
+    <navbar title="个人信息"></navbar>
+    <div class="page-content">
+        <div class="list mb-15" style="border-top: none;">
+            <div class="list-item " >
+                <div class="item-content">
+                    <div class="item-inner position-relative" ng-click="showAvatarActions()">
+                        <div style="line-height: 50px">头像</div>
+                        <form class="user-avatar-form ng-hide" ng-show="showAvatarForm">
+                            <input type="file"/>
+                        </form>
+                    </div>
+                    <div class="item-after" ng-click="previewAvatar()">
+                        <img src="app/images/avatar.png" lazy-src="{{currentUser.avatar}}" alt="" class="item-avatar"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="list">
+            <li class="list-item">
+                <div class="item-content">
+                    <div class="item-before">
+                        昵称
+                    </div>
+                    <div class="item-inner"></div>
+                    <div class="item-after">
+                        {{currentUser.nickname}}
+                    </div>
+                </div>
+            </li>
+            <li class="list-item">
+                <div class="item-content">
+                    <div class="item-before">
+                        姓名
+                    </div>
+                    <div class="item-inner"></div>
+                    <div class="item-after">
+                        {{currentUser.name}}
+                    </div>
+                </div>
+            </li>
+            <li class="list-item">
+                <div class="item-content">
+                    <div class="item-before">
+                        城市
+                    </div>
+                    <div class="item-inner"></div>
+                    <div class="item-after" ng-bind="item.city"></div>
+                </div>
+            </li>
+            <li class="list-item">
+                <div class="item-content">
+                    <div class="item-before">
+                        手机
+                    </div>
+                    <div class="item-inner"></div>
+                    <div class="item-after">
+                        {{currentUser.mobile ? currentUser.mobile : '未绑定'}}
+                    </div>
+                </div>
+            </li>
+            <li class="list-item">
+                <div class="item-content">
+                    <div class="item-before">
+                        邮箱
+                    </div>
+                    <div class="item-inner"></div>
+                    <div class="item-after">
+                        {{currentUser.email}}
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

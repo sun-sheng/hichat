@@ -1,0 +1,63 @@
+<div id="user-checkin-page" class="page" ng-controller="userCheckinCtrl">
+    <navbar title="签到"></navbar>
+    <div class="page-content no-scroll">
+        <!-- -->
+        <div infinite-scroll="loadMore()" data-infinite-scroll-disabled="data.end">
+
+            <div class="content-block">
+                <div class="checkin-box" ng-class="{'checking': checking, 'cooling': cooling}">
+                    <div class="box-inner">
+                        <button class="btn checkin-btn" ng-click="checkin()">
+                            签到
+                        </button>
+                    </div>
+
+                    <div class="checking-text">
+                        定位中
+                    </div>
+                    <div class="checking-loader"></div>
+
+                    <div class="stopwatch">
+                        <div class="stopwatch-bg">0:00</div>
+                        <div class="stopwatch-text"></div>
+                    </div>
+                    <div class="cooling-loader">
+                        <div class="cooling-loader-before"></div>
+                        <div class="cooling-loader-after"></div>
+                        <div class="cooling-loader-inner"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- -->
+            <div class="list history-list">
+
+                <ul class="list-group" ng-repeat="group in data.groups">
+                    <li class="group-title">
+                        {{group.title}}
+                    </li>
+                    <li class="list-item" ng-repeat="item in group.list">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="inner-content">
+                                    <div class="item-title">
+                                        {{item.created_at | date : 'MM月dd日 HH:mm'}}
+                                    </div>
+                                    <div class="item-subtitle">
+                                        <i class="ico-location"></i>
+                                        {{item.address}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="list-empty ng-hide" ng-show="data.groups.length === 0">
+                    暂无数据
+                </div>
+            </div>
+            <!-- history list end -->
+        </div>
+        <!-- infinite-scroll end -->
+    </div>
+    <!-- page-content end -->
+</div>

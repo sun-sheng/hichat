@@ -1,0 +1,111 @@
+.toasts
+{
+    display: none;
+    z-index: 9999;
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: 50px;
+
+    &.position-top
+    {
+        top: 50px;
+        bottom: auto;
+    }
+    &.position-center
+    {
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 45px;
+    }
+
+    .toast {
+        display: block;
+        text-align: center;
+        @include transform(translate3d(0,0,0) scale(1.185));
+        opacity: 0;
+        transition-property: opacity, transform;
+        -webkit-transition-property: opacity, -webkit-transform;
+        transition-duration: 400ms;
+        -webkit-transition-duration: 400ms;
+
+        .toast-msg
+        {
+            display: inline-block;
+            position: relative;
+            max-width: 16em;
+            font-size: 15px;
+            line-height: 24px;
+            margin-bottom: 5px;
+            text-align: left;
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+            color: #fff;
+            padding: 8px 10px 8px 36px;
+            border-radius: 3px;
+            &:before
+            {
+                @include font-ico;
+                content: "\e601";
+                position: absolute;
+                left: 10px;
+                top: 0;
+                bottom: 0;
+                font-size: 18px;
+                line-height: 24px;
+                height: 24px;
+                margin: auto;
+            }
+        }
+
+        &.toast-in
+        {
+            opacity: 1;
+            @include transform(translate3d(0,0,0) scale(1.000));
+        }
+        &.toast-out
+        {
+            opacity: 0;
+            @include transform(translate3d(0,0,0) scale(0.815));
+        }
+
+        &.type-success
+        {
+            .toast-msg
+            {
+                color: #3c763d;
+                background-color: #dff0d8;
+                border-color: #d6e9c6;
+            }
+        }
+        &.type-info
+        {
+            .toast-msg
+            {
+                color: #31708f;
+                background-color: #d9edf7;
+                border-color: #bce8f1;
+            }
+        }
+        &.type-warning
+        {
+            .toast-msg
+            {
+                color: #8a6d3b;
+                background-color: #fcf8e3;
+                border-color: #faebcc;
+            }
+        }
+        &.type-error
+        {
+            .toast-msg
+            {
+                color: #a94442;
+                background-color: #f2dede;
+                border-color: #ebccd1;
+            }
+        }
+    }
+
+}

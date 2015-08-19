@@ -1,0 +1,22 @@
+@mixin build-color($name, $color) {
+    .color-#{$name}
+    {
+        color: $color !important;
+    }
+    .bg-#{$name}
+    {
+        background-color: $color !important;
+    }
+    .border-#{$name}
+    {
+        border-color: $color !important;
+    }
+}
+
+@mixin build-font-size($begin, $end) {
+    @for $i from $begin through $end
+    {
+        .font-#{$i}
+        { font-size: #{$i}px !important; }
+    }
+}

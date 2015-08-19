@@ -1,0 +1,321 @@
+@include build-color('danger', $color-danger);
+@include build-color('danger-dark', $color-danger-dark);
+@include build-color('primary', $color-primary);
+@include build-color('primary-light', $color-primary-light);
+@include build-color('primary-dark', $color-primary-dark);
+@include build-color('info', $color-info);
+@include build-color('success', $color-success);
+@include build-color('success-dark', $color-success-dark);
+@include build-color('warning', $color-warning);
+@include build-color('warning-light', $color-warning-light);
+@include build-color('warning-dark', $color-warning-dark);
+
+@include build-color('white', $color-white);
+@include build-color('text', $color-text);
+@include build-color('text-light', $color-text-light);
+
+@include build-font-size(12, 30);
+
+.font-bold-sub
+{
+    font-weight: 500 !important;
+}
+
+.font-bold
+{
+    font-weight: bold !important;
+}
+
+.no-padding
+{
+    padding: 0 !important;
+}
+
+.padding-10
+{
+    padding: 10px !important;
+}
+
+.padding-15
+{
+    padding: 15px !important;
+}
+
+.padding-20
+{
+    padding: 20px !important;
+}
+
+.no-margin
+{
+    margin: 0 !important;
+}
+
+.margin-10
+{
+    margin: 10px !important;
+}
+
+.margin-15
+{
+    margin: 15px !important;
+}
+
+.margin-20
+{
+    margin: 20px !important;
+}
+
+.mt-15
+{
+    margin-top: 15px !important;
+}
+
+.mt-30
+{
+    margin-top: 30px !important;
+}
+
+.mb-15
+{
+    margin-bottom: 15px !important;
+}
+
+.mb-30
+{
+    margin-bottom: 30px !important;
+}
+
+.hidden
+{
+    display: none !important;
+}
+
+.float-left
+{
+    float: left !important;
+}
+
+.float-right
+{
+    float: right !important;
+}
+
+.position-relative
+{
+    position: relative;
+}
+
+.position-absolute
+{
+    position: absolute;
+}
+
+.clearfix
+{
+    @include clearfix;
+}
+
+.flex-box
+{
+    @include flex-box;
+}
+
+.flex-box-item
+{
+    @include flex-box-item;
+}
+
+.flex-align-top
+{
+    @include flex-align-top;
+}
+
+.text-underline
+{
+    //text-decoration: underline;
+    //padding-bottom: 2px;
+    border-bottom: 1px solid;
+}
+
+.text-left
+{
+    text-align: left !important;
+}
+
+.text-right
+{
+    text-align: right !important;
+}
+
+.text-center
+{
+    text-align: center !important;
+}
+
+.text-ellipsis
+{
+    @include text-ellipsis;
+}
+
+.text-badge
+{
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1em;
+    text-align: center;
+    padding: 3px;
+    border-radius: 2px;
+    color: #fff;
+    background-color: $color-primary;
+}
+
+.ui-badge
+{
+    display: block;
+    position: absolute;
+    font-style: normal;
+    right: 0;
+    .badge-inner
+    {
+        position: relative;
+        top: -50%;
+        right: -50%;
+        border-radius: 0.75em;
+        padding: 0.25em;
+        font-size: 10px;
+        line-height: 1em;
+        min-width: 1em;
+        text-align: center;
+        color: #fff;
+        background-color: $color-primary;
+    }
+}
+
+.block
+{
+    display: block !important;
+}
+
+.inline-block
+{
+    display: inline-block !important;
+}
+
+.full-box
+{
+    @include full-box;
+}
+.br-circle
+{
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.modal-textarea
+{
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    color: #666;
+    background-color: #eee;
+    font-size: 14px;
+    line-height: 20px;
+    height: 62px;
+    border: 1px solid #ccc;
+    resize: none;
+    margin-top: 15px;
+}
+
+.native-scroll ,
+.native-scroll-box ,
+.infinite-scroll
+{
+    @include native-scroll;
+}
+.native-scroll-box ,
+.infinite-scroll
+{
+    height: 100%;
+}
+
+.no-scroll
+{
+    overflow: hidden !important;
+    -webkit-overflow-scrolling: auto !important;
+}
+
+.dotting
+{
+    display: inline-block;
+    height: 0.2em;
+    width: 0.2em;
+    padding: 0 0.2em;
+    margin-left: 0.2em;
+    vertical-align: baseline;
+    border-left: 0.2em solid currentColor;
+    border-right: 0.2em solid currentColor;
+    background-color: currentColor;
+    background-clip: content-box;
+    animation: dot 2s infinite step-start both;
+    -webkit-animation: dot 2s infinite step-start both;
+}
+
+[data-stop-propagation="true"]
+{
+    position: relative;
+    &:after
+    {
+        display: block;
+        content: "";
+        z-index: 1000;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}
+
+.ele-loader
+{
+    position: absolute;
+    display: none;
+    z-index: 9999;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    .loader-content
+    {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 35px;
+        margin: auto;
+        text-align: center;
+    }
+
+    .loader-text
+    {
+        display: inline-block;
+        position: relative;
+        line-height: 35px;
+        padding-left: 35px;
+        padding-right: 10px;
+        border-radius: 5px;
+        color: #fff;
+        background-color: rgba(0,0,0,0.5);
+        &:before
+        {
+            display: block;
+            content: '';
+            width: 25px;
+            height: 25px;
+            background: url('../images/icons/loader-ele.gif');
+        }
+    }
+}

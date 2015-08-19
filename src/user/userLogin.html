@@ -1,0 +1,38 @@
+<div id="user-login-page" data-page="login" class="page" ng-controller="userLoginCtrl"
+     ng-class="{initialized: initialized, loading: loading}" >
+
+    <img class="logo" src="app/images/logo.png"/>
+
+    <form name="form" class="login-form form" novalidate>
+        <ul class="list">
+            <li class="list-item input-email">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <input class="item-input" name="email" placeholder="邮箱" type="text" required
+                               spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"
+                               ng-model="user.email"/>
+                    </div>
+                    <div class="item-after">
+                        {{settings.user_email_postfix}}
+                    </div>
+                </div>
+            </li>
+            <li class="list-item input-password">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <input class=" item-input" name="password" placeholder="密码" type="password" required
+                               ng-model="user.password"/>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <button class="btn btn-block submit-btn" ng-class="loading ? 'loading' : ''" ng-click="login()"
+                data-ng-disabled="loading || form.$invalid">
+            <span ng-bind="loading ? '登录中…' : '登录'"></span>
+            <span class="btn-spinner ico-loading"></span>
+        </button>
+    </form>
+    <p class="page-footer">
+        <a class="link" f7route="'userResetPassword.html'">忘记密码?</a>
+    </p>
+</div>

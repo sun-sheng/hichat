@@ -1,0 +1,68 @@
+.message-list
+{
+    padding: 10px;
+    background-color: transparent;
+    .list-item
+    {
+        border: none;
+        padding: 0;
+        margin-bottom: 10px;
+        .item-head
+        {
+            line-height: 0;
+            margin-bottom: 10px;
+            text-align: center;
+            .item-time
+            {
+                display: inline-block;
+                padding: 0 0.5em;
+                font-size: 12px;
+                line-height: 16px;
+                border-radius: 3px;
+                border: 1px solid #cdcdcd;
+                background-color: #ddd;
+                color: #fff;
+            }
+        }
+        .item-body
+        {
+            border: 1px solid $color-border;
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 10px;
+            .item-title
+            {
+                font-size: 16px;
+            }
+            .item-subtitle
+            {
+                font-size: 14px;
+                word-break: break-all;
+                color: $color-text-light;
+            }
+            .item-action
+            {
+                display: block;
+                width: 100%;
+                border-top: 1px solid $color-border;
+                padding-top: 5px;
+            }
+        }
+    }
+}
+
+.msg-bar
+{
+    .bar-actions
+    {
+        display: none;
+    }
+}
+
+.msg-list
+{
+    .msg-item
+    {
+
+    }
+}

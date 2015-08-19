@@ -1,0 +1,49 @@
+<div class="tab-content" ng-controller="contactListCtrl">
+
+    <navbar title="通讯录" no-back></navbar>
+
+    <div class="page-searchbar">
+        <form class="searchbar-form" novalidate>
+            <div class="form-item">
+                <input type="text" class="item-input" ng-model="data.keyword"
+                       placeholder="搜索：模糊匹配昵称和姓名"
+                       spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off">
+                <a href="#" class="item-icon ico-search"></a>
+                <a href="#" class="item-clear ico-times" ng-show="data.keyword" ng-click="clearSearch()"></a>
+            </div>
+        </form>
+    </div>
+
+    <!-- page content -->
+    <div class="page-content no-scroll" >
+        <!-- infinite-scroll -->
+        <div infinite-scroll="nextPage()"
+             data-infinite-scroll-disabled="data.limitTo >= data.results.length"
+             pull-to-refresh="reload()">
+            <!-- contact-list -->
+            <ul class="contact-list list">
+                <li class="list-item" ng-repeat="item in data.results | filter:{name: data.keyword, nickname: data.keyword} | limitTo:data.limitTo">
+                    <div f7route="'contactDetail.html'" f7route-query="item" class="item-content">
+                        <div class="item-before">
+                            <img class="item-media br-circle" src="app/images/avatar.png" lazy-src="{{item.avatar}}" />
+                        </div>
+                        <div class="item-inner">
+                            <div class="inner-content">
+                                <div class="item-title">{{item.nickname}}</div>
+                                <div class="item-subtitle">
+                                    <span>{{item.name}}</span>
+                                    <span class="float-right">{{item.sex ? '男' : '女'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-empty ng-hide" ng-show="data.results.length === 0">
+                    暂无数据
+                </li>
+            </ul>
+        </div>
+        <!-- infinite-scroll end -->
+    </div>
+
+</div>

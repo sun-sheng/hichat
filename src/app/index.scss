@@ -1,0 +1,145 @@
+@import "scss/base";
+@import "scss/animations";
+@import "scss/mixins";
+@import "scss/reset";
+@import "scss/builds";
+@import "scss/common";
+@import "scss/fonts";
+@import "scss/components/index";
+@import "../contact/index";
+@import "../message/index";
+@import "../user/index";
+
+.screens
+{
+    z-index: 5001;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    .screen
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        .screen-footer
+        {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    }
+
+}
+
+#entrance-main-screen
+{
+    background-color: $color-primary;
+    .logo
+    {
+        width: 104px;
+        height: 95px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+    }
+    .logo-bg
+    {
+        display: block;
+        width: 104px;
+        height: 95px;
+    }
+    .logo-inner
+    {
+        @include animation-spin;
+        position: absolute;
+        width: 27px;
+        height: 27px;
+        left: 41px;
+        bottom: 19px;
+    }
+    .screen-footer
+    {
+        padding: 15px;
+        margin-bottom: 30px;
+        text-align: center;
+        color: #fff;
+    }
+}
+
+#main-page
+{
+    .navbar {
+        position: absolute;
+    }
+    .tabbar
+    {
+        .eve-badge
+        {
+            top: -2px;
+        }
+        .item-dot
+        {
+            display: block;
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            top: 0;
+            right: -2px;
+        }
+
+        .tabbar-icon
+        {
+            display: block;
+            position: relative;
+            text-align: center;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 24px;
+        }
+    }
+}
+
+#about-page
+{
+    .logo
+    {
+        width: 104px;
+        height: 95px;
+        display: block;
+        margin: auto;
+        margin-top: 50px;
+        margin-bottom: 40px;
+    }
+    .version
+    {
+        text-align: center;
+        color: $color-text-light;
+    }
+}
+
+.feedback-page
+{
+    textarea
+    {
+        box-sizing: border-box;
+        border: none;
+        resize: none;
+        padding: 15px;
+        width: 100%;
+        height: 100%;
+        font-size: 16px;
+        line-height: 24px;
+    }
+}

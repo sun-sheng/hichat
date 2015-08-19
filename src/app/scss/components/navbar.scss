@@ -1,0 +1,55 @@
+.navbar
+{
+    color: #fff;
+    background-color: $color-primary;
+    font-size: 16px;
+
+    .navbar-inner
+    {
+        padding: 0;
+    }
+
+    &:after
+    {
+        display: none;
+    }
+
+    .link
+    {
+        padding-left: 10px;
+        padding-right: 10px;
+        .link-icon
+        {
+            font-size: 20px;
+        }
+    }
+
+    .left,
+    .right
+    {
+        font-size: 14px;
+    }
+
+    .navbar-title
+    {
+        display: block;
+        text-align: center;
+        line-height: 44px;
+    }
+
+    &[no-back]
+    {
+        .back
+        {
+            display: none !important;
+        }
+    }
+}
+
+.navbar-hidden
+{
+    .navbar
+    {
+        display: none;
+    }
+}

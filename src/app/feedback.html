@@ -1,0 +1,20 @@
+<div class="page feedback-page" ng-controller="feedbackCtrl">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="#" class="link back">
+                    <i class="link-icon ico-arrow-back"></i>
+                </a>
+            </div>
+            <div class="right">
+                <a href="#" class="link" ng-click="submit()">提交</a>
+            </div>
+        </div>
+        <div class="navbar-title">
+            意见反馈
+        </div>
+    </div>
+    <div class="page-content">
+        <textarea ng-model="content" placeholder="请输入你的反馈意见"></textarea>
+    </div>
+</div>

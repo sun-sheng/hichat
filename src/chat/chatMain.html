@@ -1,0 +1,40 @@
+<div class="tab-content" ng-controller="chatMainCtrl">
+
+    <navbar title="消息" no-back></navbar>
+    <!-- page content -->
+    <div class="page-content no-scroll">
+
+        <div pull-to-refresh="load()" data-ptr-ready="refresh()">
+
+            <ul class="list">
+                <li class="list-item gap-10" ng-repeat="item in data.results track by $index">
+                    <div f7route="'chatDetail.html'" f7route-query="{chat_id: item.id}" class="item-content">
+                        <div class="item-before position-relative">
+                            <img ng-src="{{item.icon}}" class="item-media" style="width: 36px; height: 36px" />
+                        </div>
+                        <div class="item-inner">
+                            <div class="inner-content">
+                                <div class="item-title">
+                                    {{item.name}}
+                                    <span class="float-right font-12">
+                                        {{item.unread_messages[item.unread_messages.length - 1].create_at | fromNow}}
+                                    </span>
+                                </div>
+                                <div class="item-subtitle text-ellipsis">
+                                    {{item.unread_messages[item.unread_messages.length - 1].content}}
+                                    <span ng-show="item.unread_messages.length > 0" class="text-badge bg-danger">
+                                        {{item.unread_messages.length < 99 ? item.unread_messages.length : '99+'}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-empty" ng-hide="data.results.length > 0">
+                    暂无数据
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
