@@ -1,22 +1,17 @@
-var Chat = {
-    get: function (id)
-    {
+module.exports = {
+  get: function (id) {
 
-    },
-    create: function (chat)
-    {
+  },
+  create: function (chat) {
 
-    },
-    destroy: function (id)
-    {
+  },
+  destroy: function (id) {
 
-    },
-    addUser: function (id)
-    {
+  },
+  addUser: function (id) {
 
-    },
-    addUsers: function (ids)
-    {
+  },
+  addUsers: function (ids) {
 
-    }
+  }
 };

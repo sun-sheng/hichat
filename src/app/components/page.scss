@@ -1,0 +1,174 @@
+.page
+{
+  background-color : $color-bg-page;
+  //min-height: 480px;
+
+  &.loading
+  {
+
+    &:after
+    {
+      z-index  : 999;
+      display  : block;
+      position : absolute;
+      top      : 0;
+      bottom   : 0;
+      left     : 0;
+      right    : 0;
+      content  : "";
+    }
+  }
+
+  .page-searchbar
+  {
+    z-index          : 200;
+    position         : absolute;
+    box-sizing       : border-box;
+    width            : 100%;
+    top              : 44px;
+    background-color : $color-primary;
+    padding          : 7px 15px;
+  }
+
+  .searchbar-form
+  {
+    width : 100%;
+
+    .form-item
+    {
+      position : relative;
+
+      .item-icon
+      {
+        position    : absolute;
+        top         : 0;
+        bottom      : 0;
+        margin      : auto;
+        left        : 8px;
+        font-size   : 18px;
+        color       : #fff;
+        line-height : 20px;
+        height      : 20px;
+      }
+      .item-input
+      {
+        box-sizing       : border-box;
+        border           : none;
+        border-radius    : 5px;
+        width            : 100%;
+        color            : #fff;
+        padding          : 5px 30px;
+        background-color : $color-primary-light;
+        &::-webkit-input-placeholder
+        {
+          color : #fff;
+        }
+        &:-ms-input-placeholder
+        {
+          color : #fff;
+        }
+      }
+      .item-clear
+      {
+        position    : absolute;
+        color       : #fff;
+        z-index     : 3;
+        width       : 40px;
+        text-align  : center;
+        line-height : 40px;
+        top         : -6px;
+        right       : -6px;
+      }
+    }
+  }
+
+  .page-toolbar
+  {
+    z-index          : 200;
+    position         : absolute;
+    top              : 44px;
+    left             : 0;
+    right            : 0;
+    background-color : #fff;
+    border-bottom    : 1px solid $color-border;
+
+    .flex-box-item
+    {
+      border-left : 1px solid $color-border;
+      &:first-child
+      {
+        border-left-color : transparent;
+      }
+    }
+
+    .dropdown-toggle
+    {
+      display     : block;
+      width       : 100%;
+      height      : 40px;
+      line-height : 40px;
+      &.checked
+      {
+        color : $color-primary-light;
+      }
+    }
+  }
+
+  & > .dropdown-menu
+  {
+    z-index  : 100;
+    position : absolute;
+    top      : 85px;
+    left     : 0;
+    right    : 0;
+    bottom   : 0;
+    .menu-content
+    {
+      @include native-scroll;
+      max-height : 100%;
+      position   : relative;
+      z-index    : 3;
+    }
+    .menu-overlay
+    {
+      position         : absolute;
+      z-index          : 1;
+      top              : 0;
+      bottom           : 0;
+      left             : 0;
+      right            : 0;
+      background-color : rgba(0, 0, 0, .4);
+    }
+  }
+
+  .page-frame
+  {
+    width   : 100%;
+    height  : 100%;
+    border  : none;
+    margin  : 0;
+    padding : 0;
+  }
+
+  .page-footer
+  {
+    z-index  : 3;
+    position : absolute;
+    padding  : 15px;
+    left     : 0;
+    right    : 0;
+    bottom   : 0;
+  }
+}
+
+.tabbar-through .page-content,
+.tabbar-fixed .page-content
+{
+  padding-bottom : 49px;
+}
+
+.navbar-fixed .page-searchbar ~ .page-content,
+.navbar-fixed .page-toolbar ~ .page-content
+{
+  padding-top : 84px;
+}

@@ -1,39 +1,39 @@
 <div id="user-verify-page" data-page="verify" class="page no-swipeback" ng-controller="userVerifyCtrl">
-    <navbar title="身份验证"></navbar>
-    <div class="page-content">
-        <form name="form" class="form" novalidate>
-            <p class="mb-15 mt-15 padding-15 color-text-light">
-                验证码将发送到手机：{{currentUser.mobile.substring(0, 3) + '****' + currentUser.mobile.substring(7)}}
-            </p>
-            <ul class="list mb-15">
-                <li class="list-item">
-                    <div class="item-content">
-                        <div class="item-inner">
-                            <input type="text" class="item-input" name="code" ng-model="code" required placeholder="请输入验证码"/>
-                        </div>
-                        <div class="item-after">
-                            <button class="btn btn-sm btn-primary" data-ng-disabled="cooling" ng-click="getCode()">
-                                <span ng-show="cooling">已发送({{cooldown}}s)</span>
-                                <span ng-hide="cooling">获取验证码</span>
-                            </button>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <div class="padding-15">
-                <button class="btn btn-block btn-primary mb-15" ng-click="verify()" data-ng-disabled="form.$invalid">验证</button>
-                <p class="text-center">
-                    收不到短信？请使用
-                    <a href="#" data-ng-disabled="cooling" ng-click="getCode('voice')" class="color-primary text-underline">
-                        语音验证码
-                    </a>
-                </p>
+  <navbar title="身份验证"></navbar>
+  <div class="page-content">
+    <form name="form" class="form" novalidate>
+      <p class="mb-15 mt-15 padding-15 color-text-light">
+        验证码将发送到手机：{{currentUser.mobile.substring(0, 3) + '****' + currentUser.mobile.substring(7)}}
+      </p>
+      <ul class="list mb-15">
+        <li class="list-item">
+          <div class="item-content">
+            <div class="item-inner">
+              <input type="text" class="item-input" name="code" ng-model="code" required placeholder="请输入验证码"/>
             </div>
-        </form>
-    </div>
-    <div class="page-footer text-center color-text-light">
-        若手机号码不正确，请联系账号管理员
-        <br/>
-        zhanghao@ele.me
-    </div>
+            <div class="item-after">
+              <button class="btn btn-sm btn-primary" data-ng-disabled="cooling" ng-click="getCode()">
+                <span ng-show="cooling">已发送({{cooldown}}s)</span>
+                <span ng-hide="cooling">获取验证码</span>
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="padding-15">
+        <button class="btn btn-block btn-primary mb-15" ng-click="verify()" data-ng-disabled="form.$invalid">验证</button>
+        <p class="text-center">
+          收不到短信？请使用
+          <a href="#" data-ng-disabled="cooling" ng-click="getCode('voice')" class="color-primary text-underline">
+            语音验证码
+          </a>
+        </p>
+      </div>
+    </form>
+  </div>
+  <div class="page-footer text-center color-text-light">
+    若手机号码不正确，请联系账号管理员
+    <br/>
+    zhanghao@ele.me
+  </div>
 </div>

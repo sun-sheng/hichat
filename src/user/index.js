@@ -1,20 +1,19 @@
-var mod = angular.module(
-    'module.user', []
+module.exports = angular.module(
+  'module.user', []
 ).controller(
-    'userLoginCtrl', require('./userLoginCtrl')
+  'userLoginCtrl', require('./userLoginCtrl')
 ).controller(
-    'userResetPasswordCtrl', require('./userResetPasswordCtrl')
+  'userResetPasswordCtrl', require('./userResetPasswordCtrl')
 ).controller(
-    'userChangePasswordCtrl', require('./userChangePasswordCtrl')
+  'userChangePasswordCtrl', require('./userChangePasswordCtrl')
 ).controller(
-    'userVerifyCtrl', require('./userVerifyCtrl')
+  'userVerifyCtrl', require('./userVerifyCtrl')
 ).controller(
-    'userMainCtrl', require('./userMainCtrl')
+  'userMainCtrl', require('./userMainCtrl')
 ).controller(
-    'userInfoCtrl', require('./userInfoCtrl')
+  'userInfoCtrl', require('./userInfoCtrl')
 ).controller(
-    'userCheckinCtrl', require('./userCheckinCtrl')
+  'userCheckinCtrl', require('./userCheckinCtrl')
 ).factory(
-    'userService', require('./userService')
-);
-module.exports = mod.name;
+  'userService', require('./userService')
+).name;

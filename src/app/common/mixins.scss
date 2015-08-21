@@ -1,0 +1,150 @@
+@mixin font-ico
+{
+  font-family             : 'ico';
+  speak                   : none;
+  font-style              : normal;
+  font-weight             : normal;
+  font-variant            : normal;
+  text-transform          : none;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing  : antialiased;
+  -moz-osx-font-smoothing : grayscale;
+}
+
+@mixin display-flex
+{
+  display : -webkit-box;
+  display : -ms-flexbox;
+  display : -webkit-flex;
+  display : flex;
+}
+
+@mixin position-center
+{
+  position : absolute;
+  top      : 0;
+  bottom   : 0;
+  left     : 0;
+  right    : 0;
+  margin   : auto;
+}
+
+@mixin full-size
+{
+  width  : 100%;
+  height : 100%;
+}
+
+@mixin border-box
+{
+  -webkit-box-sizing : border-box;
+  -moz-box-sizing    : border-box;
+  -ms-box-sizing     : border-box;
+  box-sizing         : border-box;
+}
+
+@mixin full-box
+{
+  @include border-box;
+  @include full-size;
+  display : block;
+}
+
+@mixin relative-box
+{
+  @include border-box;
+  @include full-size;
+  display  : block;
+  position : relative;
+  overflow : hidden;
+}
+
+@mixin flex-box
+{
+  @include border-box;
+  @include display-flex;
+  -webkit-box-pack        : justify;
+  -ms-flex-pack           : justify;
+  -webkit-justify-content : space-between;
+  justify-content         : space-between;
+  -webkit-box-align       : center;
+  -ms-flex-align          : center;
+  -webkit-align-items     : center;
+  align-items             : center;
+}
+
+@mixin flex-box-item
+{
+  @include border-box;
+  @include display-flex;
+  -webkit-box-pack        : center;
+  -ms-flex-pack           : center;
+  -webkit-justify-content : center;
+  justify-content         : center;
+  -webkit-box-align       : center;
+  -ms-flex-align          : center;
+  -webkit-align-items     : center;
+  align-items             : center;
+  overflow                : visible;
+  -webkit-box-flex        : 1;
+  -ms-flex                : 1;
+  -webkit-flex            : 1;
+  flex                    : 1;
+  -webkit-box-orient      : vertical;
+  -moz-box-orient         : vertical;
+  -ms-flex-direction      : column;
+  -webkit-flex-direction  : column;
+  flex-direction          : column;
+}
+
+@mixin flex-align-top
+{
+  align-items         : flex-start;
+  -webkit-align-items : flex-start;
+  -webkit-box-align   : start;
+}
+
+@mixin clearfix
+{
+  &:before,
+  &:after
+  {
+    display : table;
+    content : "";
+    clear   : both;
+  }
+}
+
+//转换
+@mixin transform($transform...) {
+  -webkit-transform : $transform;
+  transform         : $transform;
+}
+
+//3d 转换
+@mixin translate3d($x:0, $y:0, $z:0) {
+  -webkit-transform : translate3d($x, $y, $z);
+  transform         : translate3d($x, $y, $z);
+}
+
+// 过度
+@mixin transition($transition...) {
+  -webkit-transition : $transition;
+  transition         : $transition;
+}
+
+// 单行文字自动省略
+@mixin text-ellipsis
+{
+  text-overflow : ellipsis;
+  white-space   : nowrap;
+  overflow      : hidden;
+}
+
+@mixin native-scroll
+{
+  overflow                   : auto;
+  -webkit-overflow-scrolling : touch;
+}
+

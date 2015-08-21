@@ -1,27 +1,25 @@
-var mod = angular.module(
-    'components', []
+module.exports = angular.module(
+  'app.components', []
 ).factory(
-    'backButton', require('./backButton')
+  'backButton', require('./backButton')
 ).factory(
-    'camera', require('./camera')
+  'camera', require('./camera')
 ).factory(
-    'device', require('./device')
+  'device', require('./device')
 ).factory(
-    'fileTransfer', require('./fileTransfer')
+  'fileTransfer', require('./fileTransfer')
 ).factory(
-    'location', require('./location')
+  'location', require('./location')
 ).factory(
-    'logger', require('./logger')
+  'logger', require('./logger')
 ).factory(
-    'modal', require('./modal')
+  'modal', require('./modal')
 ).factory(
-    'storage', require('./storage')
+  'storage', require('./storage')
 ).factory(
-    'temp', require('./temp')
+  'temp', require('./temp')
 ).factory(
-    'toast', require('./toast')
+  'toast', require('./toast')
 ).factory(
-    'util', require('./util')
-);
-
-module.exports = mod.name;
+  'util', require('./util')
+).name;

@@ -1,16 +1,15 @@
-var mod = angular.module(
-    'directives', []
+module.exports = angular.module(
+  'app.directives', []
 ).directive(
-    'infiniteScroll', require('./infiniteScroll')
+  'infiniteScroll', require('./infiniteScroll')
 ).directive(
-    'pullToRefresh', require('./pullToRefresh')
+  'pullToRefresh', require('./pullToRefresh')
 ).directive(
-    'customValid', require('./customValid')
+  'customValid', require('./customValid')
 ).directive(
-    'lazySrc', require('./lazySrc')
+  'lazySrc', require('./lazySrc')
 ).directive(
-    'navbar', require('./navbar')
+  'navbar', require('./navbar')
 ).directive(
-    'f7route', require('./f7route')
-);
-module.exports = mod.name;
+  'f7route', require('./f7route')
+).name;

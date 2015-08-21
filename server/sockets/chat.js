@@ -1,7 +1,5 @@
-module.exports = function (socket)
-{
-    socket.on('message', function (msg)
-    {
+module.exports = function (socket) {
+  socket.on('message', function (msg) {
 
-    });
+  });
 };

@@ -1,75 +1,75 @@
 <div class="tab-content" ng-controller="userMainCtrl">
-    <navbar title="个人中心" no-back></navbar>
-    <div class="page-content">
-        <ul class="list mb-15" style="border-top: none;">
-            <li class="list-item">
-                <a class="item-link" f7route="'userInfo.html'">
-                    <div class="item-before">
-                        <img src="app/images/avatar.png" lazy-src="{{currentUser.avatar}}" alt="" class="item-media br-circle"/>
-                    </div>
-                    <div class="item-inner">
-                        <div class="inner-content">
-                            <div class="item-title" ng-bind="currentUser.nickname"></div>
-                            <div class="item-subtitle" ng-bind="item.city"></div>
-                        </div>
-                    </div>
-                    <div class="item-after">
-                        <i class="ico-chevron-right font-16"></i>
-                    </div>
-                </a>
-            </li>
-        </ul>
-        <ul class="list mb-30">
-            <li class="list-item">
-                <a class="item-link" f7route="'feedback.html'">
-                    <div class="item-before">
-                        <i class="ico-email"></i>
-                    </div>
-                    <div class="item-inner">
-                        意见反馈
-                    </div>
-                    <div class="item-after">
-                        <i class="ico-chevron-right font-16"></i>
-                    </div>
-                </a>
-            </li>
-            <li class="list-item">
-                <a class="item-link" f7route="'userChangePassword.html'">
-                    <div class="item-before">
-                        <i class="ico-lock"></i>
-                    </div>
-                    <div class="item-inner">
-                        修改密码
-                    </div>
-                    <div class="item-after">
-                        <i class="ico-chevron-right font-16"></i>
-                    </div>
-                </a>
-            </li>
-            <li class="list-item">
-                <a class="item-link" f7route="'settings.html'">
-                    <div class="item-before">
-                        <i class="ico-setting"></i>
-                    </div>
-                    <div class="item-inner">
-                        设置
-                    </div>
-                    <div class="item-after">
-                        <i class="ico-chevron-right font-16"></i>
-                    </div>
-                </a>
-            </li>
-        </ul>
-        <ul class="list">
-            <li class="list-item" style="margin-left: -15px;" ng-click="logout()">
-                <div class="item-content">
-                    <div class="item-inner color-danger">
-                        <div class="inner-content text-center">
-                            退出
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
+  <navbar title="个人中心" no-back></navbar>
+  <div class="page-content">
+    <ul class="list mb-15" style="border-top: none;">
+      <li class="list-item">
+        <a class="item-link" f7route="'userInfo.html'">
+          <div class="item-before">
+            <img src="assets/images/avatar.png" lazy-src="{{currentUser.avatar}}" alt="" class="item-media br-circle"/>
+          </div>
+          <div class="item-inner">
+            <div class="inner-content">
+              <div class="item-title" ng-bind="currentUser.nickname"></div>
+              <div class="item-subtitle" ng-bind="item.city"></div>
+            </div>
+          </div>
+          <div class="item-after">
+            <i class="ico-chevron-right font-16"></i>
+          </div>
+        </a>
+      </li>
+    </ul>
+    <ul class="list mb-30">
+      <li class="list-item">
+        <a class="item-link" f7route="'feedback.html'">
+          <div class="item-before">
+            <i class="ico-email"></i>
+          </div>
+          <div class="item-inner">
+            意见反馈
+          </div>
+          <div class="item-after">
+            <i class="ico-chevron-right font-16"></i>
+          </div>
+        </a>
+      </li>
+      <li class="list-item">
+        <a class="item-link" f7route="'userChangePassword.html'">
+          <div class="item-before">
+            <i class="ico-lock"></i>
+          </div>
+          <div class="item-inner">
+            修改密码
+          </div>
+          <div class="item-after">
+            <i class="ico-chevron-right font-16"></i>
+          </div>
+        </a>
+      </li>
+      <li class="list-item">
+        <a class="item-link" f7route="'settings.html'">
+          <div class="item-before">
+            <i class="ico-setting"></i>
+          </div>
+          <div class="item-inner">
+            设置
+          </div>
+          <div class="item-after">
+            <i class="ico-chevron-right font-16"></i>
+          </div>
+        </a>
+      </li>
+    </ul>
+    <ul class="list">
+      <li class="list-item" style="margin-left: -15px;" ng-click="logout()">
+        <div class="item-content">
+          <div class="item-inner color-danger">
+            <div class="inner-content text-center">
+              退出
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>

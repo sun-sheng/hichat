@@ -1,10 +1,9 @@
-var mod = angular.module(
-    'module.chat', []
+module.exports = angular.module(
+  'module.chat', []
 ).controller(
-    'chatMainCtrl', require('./chatMainCtrl')
+  'chatMainCtrl', require('./chatMainCtrl')
 ).controller(
-    'chatDetailCtrl', require('./chatDetailCtrl')
+  'chatDetailCtrl', require('./chatDetailCtrl')
 ).factory(
-    'chatService', require('./chatService')
-);
-module.exports = mod.name;
+  'chatService', require('./chatService')
+).name;

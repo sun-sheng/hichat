@@ -1,27 +1,21 @@
 /*@ngInject*/
-module.exports = function ()
-{
-    var logger;
-    if (window.console)
-    {
-        logger = window.console;
-    }
-    else
-    {
-        logger = {
-            log: function ()
-            {
+module.exports = function () {
+  var logger;
+  if (window.console) {
+    logger = window.console;
+  }
+  else {
+    logger = {
+      log: function () {
 
-            },
-            warn: function ()
-            {
+      },
+      warn: function () {
 
-            },
-            error: function ()
-            {
+      },
+      error: function () {
 
-            }
-        };
-    }
-    return logger;
+      }
+    };
+  }
+  return logger;
 };

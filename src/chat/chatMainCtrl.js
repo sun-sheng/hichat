@@ -1,22 +1,20 @@
 /*@ngInject*/
-module.exports = function ($scope, $rootScope, constants, settings, messageService, util)
-{
-    var loading = false;
-    var data = {
-        results: [],
-        count: 0
-    };
-    $scope.data = data;
+module.exports = function ($scope, settings, chatService, modal, toast) {
 
-    $scope.load = function ()
-    {
-        if (loading) return false;
-        loading = true;
-    };
+  var loading = false;
 
-    $scope.refresh = function ()
-    {
-        $scope.$broadcast(constants.EVENT_NAME.PULL_TO_REFRESH);
-    };
+  $scope.refresh = function () {
+    if (loading) return false;
+    loading = true;
+    modal.showIndicator();
+    chatService.fetch().then(function (chats) {
+      $scope.chats = chats;
+    }, function (err) {
+      toast.error('获取聊天信息失败：' + err.msg);
+    }).finally(function () {
+      loading = false;
+      modal.hideIndicator();
+    });
+  };
 
 };

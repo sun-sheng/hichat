@@ -11,9 +11,8 @@ npm-debug.log
 node_modules/
 bower_components/
 
-src/*.js
-src/*.css
-
 cordova/
+
 www/
+!www/assets/
 

@@ -1,11 +1,9 @@
-var mod = angular.module(
-    'module.contact', []
+module.exports = angular.module(
+  'module.contact', []
 ).controller(
-    'contactListCtrl', require('./contactListCtrl')
+  'contactListCtrl', require('./contactListCtrl')
 ).controller(
-    'contactDetailCtrl', require('./contactDetailCtrl')
+  'contactDetailCtrl', require('./contactDetailCtrl')
 ).factory(
-    'contactService', require('./contactService')
-);
-
-module.exports = mod.name;
+  'contactService', require('./contactService')
+).name;

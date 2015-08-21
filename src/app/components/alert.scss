@@ -1,0 +1,74 @@
+.force-alert-bg
+{
+  @include transition(opacity 0.4s);
+  display          : none;
+  opacity          : 0;
+  z-index          : 20000;
+  position         : absolute;
+  background-color : rgba(0, 0, 0, 0.4);
+  top              : 0;
+  bottom           : 0;
+  left             : 0;
+  right            : 0;
+  &.active
+  {
+    opacity : 1;
+  }
+}
+
+.force-alert
+{
+  display            : none;
+  opacity            : 0;
+  -webkit-transform  : translate3d(0, 0, 0) scale(1.185);
+  transform          : translate3d(0, 0, 0) scale(1.185);
+  transition         : transform 0.4s;
+  -webkit-transition : -webkit-transform 0.4s;
+  z-index            : 20001;
+  position           : absolute;
+  top                : 50%;
+  left               : 30px;
+  right              : 30px;
+  background-color   : #fff;
+  border-radius      : 7px;
+  overflow           : hidden;
+  color              : #000;
+
+  .alert-head,
+  .alert-foot
+  {
+    text-align  : center;
+    font-weight : 500;
+    font-size   : 18px;
+  }
+  .alert-head
+  {
+    padding        : 15px;
+    line-height    : 1em;
+    padding-bottom : 0;
+  }
+  .alert-foot
+  {
+    border-top  : 1px solid #b5b5b5;
+    line-height : 44px;
+    color       : $color-primary;
+  }
+
+  .alert-body
+  {
+    padding : 15px;
+    color   : $color-text;
+  }
+
+  .alert-action
+  {
+    display : block;
+  }
+
+  &.active
+  {
+    opacity           : 1;
+    -webkit-transform : translate3d(0, 0, 0) scale(1);
+    transform         : translate3d(0, 0, 0) scale(1);
+  }
+}
