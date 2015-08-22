@@ -8,7 +8,7 @@ module.exports = function ($httpProvider, $forageProvider) {
     }
   });
 
-  $httpProvider.defaults.headers.common['HTTP_SIGNATURE'] = 'not_implemented';
+  $httpProvider.defaults.headers.common['HTTP-SIGNATURE'] = 'not implemented';
 
   var intercept = [
     '$q',
@@ -17,7 +17,7 @@ module.exports = function ($httpProvider, $forageProvider) {
     function ($q, $rootScope, constants) {
       return {
         request: function (config) {
-          config.headers['HTTP_TIMESTAMP'] = Date.now();
+          config.headers['HTTP-TIMESTAMP'] = Date.now();
           return config;
         },
         responseError: function (rejection) {

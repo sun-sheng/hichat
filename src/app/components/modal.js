@@ -1,31 +1,27 @@
 /*@ngInject*/
 module.exports = function (i18n, device) {
-  var $$eleLoader     = $$('<div class="ele-loader"><div class="loader-content"><div class="loader-text"></div></div></div>');
-  $$body.append($$eleLoader);
-  var $$eleLoaderText = $$eleLoader.find('.loader-text');
+
+  var $$appLoader     = $$('<div class="app-loader"><div class="loader-content"><div class="loader-text"></div></div></div>');
+  $$body.append($$appLoader);
+  var $$appLoaderText = $$appLoader.find('.loader-text');
 
   function convert_arguments(args) {
     if (args.length === 0) {
       return false;
     }
     else if (args.length === 1) {
-      args[3] = function () {
-      };
-      args[2] = function () {
-      };
-      args[1] = i18n.global.text.modal_title;
+      args[3] = function () {};
+      args[2] = function () {};
+      args[1] = i18n.global.modal_title;
     }
     if (typeof args[1] === 'string') {
-      args[3] = args[3] || function () {
-        };
-      args[2] = args[2] || function () {
-        };
+      args[3] = args[3] || function () {};
+      args[2] = args[2] || function () {};
     }
     else if (typeof args[1] === 'function') {
-      args[3] = args[2] || function () {
-        };
+      args[3] = args[2] || function () {};
       args[2] = args[1];
-      args[1] = i18n.global.text.modal_title;
+      args[1] = i18n.global.modal_title;
     }
     else {
       return false;
@@ -44,18 +40,14 @@ module.exports = function (i18n, device) {
   /**
    * 显示加载指示器
    */
-  modal.showIndicator = function (text) {
+  modal.showIndicator = function () {
     f7.showIndicator();
-    //$$eleLoaderText.text(text);
-    //$$eleLoader.show();
   };
   /**
    * 关闭加载指示器
    */
   modal.hideIndicator = function () {
     f7.hideIndicator();
-    //$$eleLoaderText.text('');
-    //$$eleLoader.hide();
   };
 
   /**
@@ -75,77 +67,34 @@ module.exports = function (i18n, device) {
    * 弹出提醒框
    */
   modal.alert         = function (text, title, okFunc) {
-    if (device.isCordova()) {
-      var args = convert_arguments(arguments);
-      if (args === false) {
-        return false;
-      }
-      text   = args[0];
-      title  = args[1];
-      okFunc = args[2];
-      navigator.notification.alert(text, okFunc, title, i18n.global.text.ok);
-    }
-    else {
-      f7.alert(text, title, okFunc);
-    }
+    f7.alert(text, title, okFunc);
   };
   /**
    * 弹出确认框
    */
   modal.confirm       = function (text, title, okFunc, cancelFunc) {
 
-    if (device.isCordova()) {
-      var args = convert_arguments(arguments);
-      if (args === false) {
-        return false;
-      }
-      text       = args[0];
-      title      = args[1];
-      okFunc     = args[2];
-      cancelFunc = args[3];
-      navigator.notification.confirm(text, function (btnIndex) {
-        // no button = 0, 'OK' = 1, 'Cancel' = 2
-        if (btnIndex === 1) {
-          okFunc();
-        }
-        else if (btnIndex === 2) {
-          cancelFunc();
-        }
-      }, title, [i18n.global.text.ok, i18n.global.text.cancel]);
-    }
-    else {
+    if (device.isIos || device.isMac) {
       f7.confirm(text, title, okFunc, cancelFunc);
+    } else {
+      f7.modal({
+        title: title,
+        text: text,
+        buttons: [{
+          text: i18n.global.ok,
+          onClick: okFunc
+        }, {
+          text: i18n.global.ok,
+          onClick: cancelFunc
+        }]
+      });
     }
   };
   /**
    * 弹出文本输入框
    */
   modal.prompt        = function (text, title, okFunc, cancelFunc) {
-
-    if (device.isCordova()) {
-      var args = convert_arguments(arguments);
-      if (args === false) {
-        return false;
-      }
-      text       = args[0];
-      title      = args[1];
-      okFunc     = args[2];
-      cancelFunc = args[3];
-      navigator.notification.prompt(text, function (result) {
-        var input = result.input1;
-        // no button = 0, 'OK' = 1, 'Cancel' = 2
-        var btnIndex = result.buttonIndex;
-        if (btnIndex === 1) {
-          okFunc(input);
-        }
-        else if (btnIndex === 2) {
-          cancelFunc(input);
-        }
-      }, title, [i18n.global.text.ok, i18n.global.text.cancel]);
-    }
-    else {
-      f7.prompt(text, title, okFunc, cancelFunc);
-    }
+    f7.prompt(text, title, okFunc, cancelFunc);
   };
   /**
    * 参照 framework7 api

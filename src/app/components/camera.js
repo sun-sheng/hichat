@@ -39,7 +39,7 @@ module.exports = function ($q, device, modal) {
     },
     getPicture: function (options) {
       var defer = $q.defer();
-      if (!device.isCordova()) {
+      if (!device.isCordova) {
         defer.reject(this.error.not_support);
         return defer.promise;
       }
@@ -61,7 +61,7 @@ module.exports = function ($q, device, modal) {
      * @param defaultCameraOptions 定义 公共的 camera 配置
      */
     showActions: function (actions, options, defaultCameraOptions) {
-      if (!device.isCordova()) return false;
+      if (!device.isCordova) return false;
       var actionGroups = [
         [
           {

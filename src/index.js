@@ -20,8 +20,11 @@ angular.module(
     require('./app/components/'),
     //加载 指令
     require('./app/directives/'),
+    //加载 filters
+    require('./app/filters/'),
+    //加载 公共模块
     require('./app/common/'),
-    //加载 所有业务的模块
+    //加载 所有业务模块
     require('./contact/'),
     require('./chat/'),
     require('./user/')

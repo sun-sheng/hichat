@@ -56,7 +56,7 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
 
     init: function () {
       socket = io(settings.chatSocket);
-      socket.emit('register', currentUser.id);
+      socket.emit('register', $rootScope.currentUser.id);
       socket.on('message', saveMessage);
       socket.on('messages', function (messages) {
         _.each(messages, saveMessage);
@@ -64,7 +64,7 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
     },
 
     fetch: function () {
-      return $http.get(settings.apiOrigin + 'chats', function (response) {
+      return $http.get(settings.apiOrigin + 'chats').then(function (response) {
         return response.data;
       }, function () {
         return [];
@@ -78,7 +78,7 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
           if (key.indexOf(constants.FORAGE_KEY.CHAT_PREFIX) !== 0) return true;
           util.eachRight(results, function (item, index) {
             if (item.id !== chat.id) return true;
-            chat.messages = chat.messages.contact(item.messages);
+            chat.messages = chat.messages.concat(item.messages);
             chat.unread += item.messages.length;
             $rootScope.ui.unreadMessagesCount += chat.unread;
             results.splice(index, 1);

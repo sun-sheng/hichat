@@ -1,0 +1,35 @@
+.text-badge
+{
+  display          : inline-block;
+  font-size        : 12px;
+  line-height      : 1em;
+  text-align       : center;
+  padding          : 3px;
+  border-radius    : 2px;
+  color            : #fff;
+  background-color : $color-primary;
+}
+
+.ui-badge
+{
+  display    : block;
+  position   : absolute;
+  font-style : normal;
+  right      : 0;
+  top        : 0;
+  .badge-inner
+  {
+    position         : relative;
+    display          : block;
+    top              : -50%;
+    right            : -50%;
+    border-radius    : 0.75em;
+    padding          : 0.25em;
+    font-size        : 10px;
+    line-height      : 1em;
+    min-width        : 1em;
+    text-align       : center;
+    color            : #fff;
+    background-color : $color-primary;
+  }
+}

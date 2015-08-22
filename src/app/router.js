@@ -24,7 +24,7 @@ module.exports = function ($rootScope, $templateCache, $http, $q, constants, $fo
 
     afterLogin: function (user, first) {
       $rootScope.currentUser                             = user;
-      $http.defaults.headers.common['HTTP_ACCESS_TOKEN'] = user.access_token;
+      $http.defaults.headers.common['ACCESS-TOKEN'] = user.access_token;
       chatService.init();
       if (user.is_need_verify) {
         f7MainView.router.load({

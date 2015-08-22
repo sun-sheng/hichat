@@ -2,7 +2,7 @@
 module.exports = function ($rootScope, $scope, commonService, modal, toast, device) {
   $scope.download   = function (url) {
     modal.confirm('确认前往下载页面吗？', function () {
-      device.openLink(url);
+      device.openBrowser(url);
     });
   };
   $scope.clearCache = function () {

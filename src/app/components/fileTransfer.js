@@ -9,7 +9,7 @@ module.exports = function ($q, settings, constants, device) {
 
   return {
     upload: function (uri, options) {
-      if (!device.isCordova()) return $q.reject(constants.ERROR.DEVICE_NOT_SUPPORT);
+      if (!device.isCordova) return $q.reject(constants.ERROR.DEVICE_NOT_SUPPORT);
       options            = options || {};
       options.server     = options.server || settings.uploadServer;
       var upOptions      = new FileUploadOptions();

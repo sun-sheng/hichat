@@ -1,12 +1,13 @@
 module.exports = function ($q, $scope, $rootScope, userService, camera, fileTransfer, device, modal, toast) {
+
   var loading = false;
 
-  if (!device.isCordova()) {
+  if (!device.isCordova) {
     $scope.showAvatarForm = true;
   }
   //todo 魅族note 从相册选取时，不能编辑
   $scope.showAvatarActions = function () {
-    if (!device.isCordova()) return false;
+    if (!device.isCordova) return false;
     camera.showActions(
       [{
         text: '拍照',

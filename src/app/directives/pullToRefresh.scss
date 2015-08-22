@@ -1,0 +1,55 @@
+.pull-to-refresh-layer.with-text
+{
+  margin-top : -64px;
+  height     : 64px;
+
+  .pull-to-refresh-arrow
+  {
+    margin-top : -20px;
+  }
+  .preloader
+  {
+    margin-top : -20px;
+  }
+
+  &:after
+  {
+    display     : block;
+    position    : absolute;
+    bottom      : 7px;
+    left        : 0;
+    right       : 0;
+    text-align  : center;
+    font-size   : 12px;
+    line-height : 20px;
+    content     : '下拉刷新';
+  }
+}
+
+.pull-to-refresh-content
+{
+  @include native-scroll;
+  -webkit-backface-visibility : hidden;
+  height                      : 100%;
+  &.pull-down,
+  &.pull-up,
+  &.refreshing
+  {
+    overflow : visible;
+  }
+  &.pull-up
+  {
+    .pull-to-refresh-layer.with-text:after
+    {
+      content : '松开刷新';
+    }
+  }
+  &.refreshing
+  {
+    @include translate3d(0, 64px, 0);
+    .pull-to-refresh-layer.with-text:after
+    {
+      content : '正在刷新中'
+    }
+  }
+}

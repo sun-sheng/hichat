@@ -1,0 +1,57 @@
+.modal-textarea
+{
+  display          : block;
+  box-sizing       : border-box;
+  width            : 100%;
+  color            : #666;
+  background-color : #eee;
+  font-size        : 14px;
+  line-height      : 20px;
+  height           : 62px;
+  border           : 1px solid #ccc;
+  resize           : none;
+  margin-top       : 15px;
+}
+
+.app-loader
+{
+  position : absolute;
+  display  : none;
+  z-index  : 9999;
+  left     : 0;
+  right    : 0;
+  top      : 0;
+  bottom   : 0;
+
+  .loader-content
+  {
+    position   : absolute;
+    top        : 0;
+    bottom     : 0;
+    left       : 0;
+    right      : 0;
+    height     : 35px;
+    margin     : auto;
+    text-align : center;
+  }
+
+  .loader-text
+  {
+    display          : inline-block;
+    position         : relative;
+    line-height      : 35px;
+    padding-left     : 35px;
+    padding-right    : 10px;
+    border-radius    : 5px;
+    color            : #fff;
+    background-color : rgba(0, 0, 0, 0.5);
+    &:before
+    {
+      display    : block;
+      content    : '';
+      width      : 25px;
+      height     : 25px;
+      background : url('assets/images/app-loader.gif');
+    }
+  }
+}

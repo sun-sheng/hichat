@@ -8,7 +8,7 @@ module.exports = function (toast, device) {
 
     init: function () {
 
-      if (!device.isAndroid()) return false;
+      if (!device.isAndroid) return false;
 
       $$document.on('opened', '.popup', function (e) {
         var popupId = e.target.id;

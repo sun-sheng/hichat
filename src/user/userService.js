@@ -18,11 +18,7 @@ module.exports = function ($q, $http, constants, settings, $forage, device) {
       data.device_type    = device.type;
       data.client_version = settings.version;
       return $http.post(settings.apiOrigin + 'users/login', data).then(function (response) {
-        var data            = response.data;
-        var user            = data.user;
-        user.is_need_verify = data.is_need_verify;
-        user.expired_time   = data.expired_time;
-        user.access_token   = data.token;
+        var user = response.data;
         //todo
         return $forage.clear().then(function () {
           return service.forageCurrentUser(user);

@@ -36,10 +36,10 @@ module.exports = function ($q, $rootScope, i18n, settings, constants, router, de
     swipeBackPage: true,
     pushState: false,
     popupCloseByOutside: false,
-    modalTitle: i18n.global.text.modal_title,
-    modalButtonOk: i18n.global.text.ok,
-    modalButtonCancel: i18n.global.text.cancel,
-    modalPreloaderTitle: i18n.global.text.loading
+    modalTitle: i18n.global.modal_title,
+    modalButtonOk: i18n.global.ok,
+    modalButtonCancel: i18n.global.cancel,
+    modalPreloaderTitle: i18n.global.loading
   });
 
   window.f7MainView = f7.addView('#main-view');
@@ -93,7 +93,7 @@ module.exports = function ($q, $rootScope, i18n, settings, constants, router, de
     }
   }, false);
 
-  if (device.isCordova()) {
+  if (device.isCordova) {
     //
     window.shouldRotateToOrientation = function () {
       return true;

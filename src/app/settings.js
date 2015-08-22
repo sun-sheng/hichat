@@ -14,27 +14,20 @@ var settings = {
   checkin_cooldown_seconds: 90,
   get_verify_code_cooldown_seconds: 60,
 
-  defaultAvatar: 'assets/images/avatar.png',
-
-  //-------------for dev
-  //本地 server
-  apiOrigin: 'http://127.0.0.1:7001/',
-  chatSocket: 'http://127.0.0.1:7001/socket'
-  //apiOrigin : 'http://coffee-eve.ele.me/coffee-eve-svr/'
-  //开发环境 server
-  //apiOrigin: 'http://172.16.10.27:8087/coffee-eve-svr/'
-  //某后台开发员 server
-  //apiOrigin: 'http://172.16.24.194:8080/coffee-eve-svr/'
+  defaultAvatar: 'assets/images/avatar.png'
 };
 if (window.APP_MODEL === 'DEV') {
   //todo 修改本机 IP 方便手机测试
-  settings.apiOrigin = 'http://10.97.192.140:7001/';
+  settings.apiOrigin = 'http://127.0.0.1:5001/api/';
+  settings.chatSocket = 'http://127.0.0.1:5001/socket';
 }
-if (window.APP_MODEL === 'TEST') {
-  settings.apiOrigin = '';
+else if (window.APP_MODEL === 'TEST') {
+  settings.apiOrigin = 'http://10.97.192.140:5001/api/';
+  settings.chatSocket = 'http://10.97.192.140:5001/socket';
 }
 else if (window.APP_MODEL === 'DIST') {
-  settings.apiOrigin = '';
+  settings.apiOrigin = 'http://10.97.192.140:5001/api/';
+  settings.chatSocket = 'http://10.97.192.140:5001/socket';
 }
 
 module.exports = settings;

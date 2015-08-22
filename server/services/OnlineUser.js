@@ -1,12 +1,16 @@
+var _ = require('lodash');
 var users      = {};
 var length     = 0;
 module.exports = {
   get: function (id) {
     return users[id];
   },
-  set: function (user) {
+  add: function (user) {
     if (!users[user.id]) length++;
     users[user.id] = user;
+  },
+  findWhere: function (source) {
+    return _.findWhere(users, source);
   },
   remove: function (user) {
     if (users[user.id]) {

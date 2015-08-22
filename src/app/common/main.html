@@ -7,26 +7,26 @@
   </div>
   <div class="toolbar tabbar tabbar-labels">
     <div class="toolbar-inner">
-      <div class="tab-link" ng-class="{'active': ui.activeTabIndex === 0}" ng-click="ui.activeTabIndex = 0">
+      <a class="tab-link" ng-class="{'active': ui.activeTabIndex === 0}" ng-click="ui.activeTabIndex = 0">
         <span class="tabbar-icon ico-message">
-          <span ng-show="ui.unreadMessagesCount > 0" class="ui-badge bg-red">
-            <span class="badge-inner">
+          <span ng-show="ui.unreadMessagesCount > 0" class="ui-badge">
+            <span class="badge-inner bg-red">
                 {{ui.unreadMessagesCount < 99 ? ui.unreadMessagesCount : '99+'}}
             </span>
           </span>
         </span>
         <span class="tabbar-label">消息</span>
-      </div>
-      <div class="tab-link" ng-class="{'active': ui.activeTabIndex === 1}" ng-click="ui.activeTabIndex = 1">
+      </a>
+      <a class="tab-link" ng-class="{'active': ui.activeTabIndex === 1}" ng-click="ui.activeTabIndex = 1">
         <i class="tabbar-icon ico-users"></i>
         <span class="tabbar-label">通讯录</span>
-      </div>
-      <div class="tab-link" ng-class="{'active': ui.activeTabIndex === 2}" ng-click="ui.activeTabIndex = 2">
+      </a>
+      <a class="tab-link" ng-class="{'active': ui.activeTabIndex === 2}" ng-click="ui.activeTabIndex = 2">
         <span class="tabbar-icon ico-me">
           <i ng-show="ui.updateNotice" class="item-dot bg-red"></i>
         </span>
         <span class="tabbar-label">我的</span>
-      </div>
+      </a>
     </div>
   </div>
   <!-- tabbar end -->

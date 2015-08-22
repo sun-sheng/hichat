@@ -19,11 +19,11 @@ var rename      = require('gulp-rename');
 
 //var gulpSync = require('gulp-sync')(gulp);
 
-var liveReload                 = false;
 var serverPort                 = process.env.PORT || 5001;
 var replaceHtmlOptions         = {
   css: 'app.bundler.css',
   js: 'app.bundler.js',
+  socket: '/socket.io/socket.io.js',
   model: {
     src: null,
     tpl: ''
@@ -191,18 +191,22 @@ gulp.task('replace-html', function () {
 
 gulp.task('replace-cordova-html:dev', function () {
   replaceHtmlOptions.model.tpl = replaceHtmlOptionsModelTpl.replace('[MODEL]', 'DEV');
+  //todo
+  replaceHtmlOptions.socket    = '';
   replaceHtmlOptions.cordova   = 'cordova.js';
   replaceHtmlDest              = './cordova/www';
   gulp.start('replace-html');
 });
 gulp.task('replace-cordova-html:test', function () {
   replaceHtmlOptions.model.tpl = replaceHtmlOptionsModelTpl.replace('[MODEL]', 'TEST');
+  replaceHtmlOptions.socket    = '';
   replaceHtmlOptions.cordova   = 'cordova.js';
   replaceHtmlDest              = './cordova/www';
   gulp.start('replace-html');
 });
 gulp.task('replace-cordova-html:dist', function () {
   replaceHtmlOptions.model.tpl = replaceHtmlOptionsModelTpl.replace('[MODEL]', 'DIST');
+  replaceHtmlOptions.socket    = '';
   replaceHtmlOptions.cordova   = 'cordova.js';
   replaceHtmlDest              = './cordova/www';
   gulp.start('replace-html');
@@ -211,25 +215,15 @@ gulp.task('replace-cordova-html:dist', function () {
 gulp.task('watch', function () {
   gulp.watch('src/**/*.js', ['browserify']);
   gulp.watch('./src/**/*.scss', ['scss']);
-  gulp.watch([
-      './src/**/*.html',
-      '!./src/index.html'
-    ],
-    ['ng-templates'])
+  gulp.watch(['./src/**/*.html', '!./src/index.html'], ['ng-templates']);
 });
 
 gulp.task('server', function () {
-  connect.server({
-    //livereload: liveReload,
-    root: DEST,
-    port: serverPort
-  });
-  //
   nodemon({
-    script: './server/app.js',
+    script: './server.js',
     watch: './server/',
-    ext: 'js html',
-    env: {'NODE_ENV': 'development'}
+    ext: 'js css html',
+    env: {'NODE_ENV': 'development', PORT: serverPort}
   });
 });
 

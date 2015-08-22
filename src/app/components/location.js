@@ -31,7 +31,7 @@ module.exports = function ($q, $http, settings, device) {
      * position.address    baidu formatted_address
      */
     getBaiduPosition: function (options) {
-      if (device.isAndroid()) {
+      if (device.isAndroid) {
         return get_position_form_baidu_sdk();
       }
       return this.getCurrentPosition(options).then(function (position) {

@@ -1,5 +1,5 @@
 /*@ngInject*/
-module.exports = function ($rootScope, $scope, settings, constants, router, userService, modal, toast, device) {
+module.exports = function ($rootScope, $scope, settings, constants, router, userService, modal, toast) {
   $scope.initialized = true;
   $scope.loading     = false;
   $scope.user        = {};
