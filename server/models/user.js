@@ -12,6 +12,9 @@ var UserSchema = new Schema({
   city: String,
   gender: Number,
   mobile: String,
+  chat_ids: [String],
+  contact_ids: [String],
+  bg_image: String,
   access_token: String,
   expired_time: Date
 });

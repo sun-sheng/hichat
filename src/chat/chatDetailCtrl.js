@@ -1,34 +1,62 @@
 /*@ngInject*/
-module.exports = function ($scope, settings, chatService, modal, toast) {
+module.exports = function ($scope, settings, chatService, contactService, modal, util, toast) {
+
   var loading = false;
   var chat    = $scope.f7page.query;
   var data    = {
     chat: chat,
-    sending: false,
-    limitTo: - settings.page_size
+    limitTo: - settings.page_size_sm
   };
-  $scope.data = data;
+
+  var $list = $$($scope.f7page.container).find('.chat-message-list');
+
+  var events = [{
+    event: 'click',
+    selector: '.list-item .item-subtitle img',
+    element: $list,
+    handler: function (e) {
+      var $images = $list.find('.list-item .item-subtitle img');
+      var photos = [];
+      var target_src = e.target.getAttribute('src');
+      var target_index = 0;
+      $images.each(function (i, ele) {
+        var src = ele.getAttribute('src');
+        if (src === target_src) target_index = i;
+        photos.push(src);
+      });
+      modal.createPhotoBrowser({
+        photos: photos,
+        initialSlide: target_index
+      }).open();
+    }
+  }];
+
+  util.bindEvents(events);
+
+  $scope.$on('$destroy', function () {
+    util.unbindEvents(events);
+  });
+
+  contactService.load().then(function (contacts) {
+    data.users = {};
+    _.each(contacts, function (contact) {
+      data.users[contact.id] = contact;
+    });
+    $scope.data = data;
+  });
 
   $scope.loadMore = function () {
-    if (loading || data.limitTo < - data.results.length) return false;
-    data.limitTo -= settings.page_size;
-    data.limitTo = data.limitTo > - data.results.length ? data.limitTo : - (data.results.length - 1);
+    if (loading || data.limitTo < - data.chat.messages.length) return false;
+    data.limitTo -= settings.page_size_sm;
+    data.isEnd = data.limitTo < - data.chat.messages.length;
+    if (data.isEnd) {
+      data.limitTo = - data.chat.messages.length;
+    }
     $scope.$digest();
   };
 
   $scope.sendMessage = function () {
-    if (data.sending) {
-      toast.info('正在发送中，请稍后');
-      return false;
-    }
-    data.sending = true;
-    chatService.sendMessage().then(function () {
-      toast.success('消息发送成功');
-    }, function (err) {
-      toast.error('消息发送失败：' + err.msg);
-    }).finally(function () {
-      data.sending = false;
-    });
+    chatService.sendMessage();
   };
 
 };

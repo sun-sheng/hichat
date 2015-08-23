@@ -1,6 +1,15 @@
-.chat-msg-list
+.chat-list
 {
-  padding          : 10px;
+  .item-subtitle
+  {
+    padding-right : 15px;
+  }
+}
+
+.chat-message-list
+{
+  //padding          : 10px;
+  border           : none;
   background-color : transparent;
   .list-item
   {
@@ -12,23 +21,44 @@
       line-height   : 0;
       margin-bottom : 10px;
       text-align    : center;
+      padding-right : 15px;
       .item-time
       {
         display          : inline-block;
-        padding          : 0 0.5em;
+        padding          : 0.5em;
         font-size        : 12px;
-        line-height      : 16px;
+        line-height      : 12px;
         border-radius    : 3px;
-        border           : 1px solid #cdcdcd;
-        background-color : #ddd;
+        background-color : #dedede;
         color            : #fff;
       }
     }
-    .inner-content
+    .item-media
     {
+      width  : 50px;
+      height : 50px;
+    }
+
+    .item-content
+    {
+      .item-before
+      {
+        padding-right: 10px;
+      }
+      .item-after
+      {
+        padding-left: 10px;
+      }
+    }
+
+    .item-inner > .inner-content
+    {
+      text-align : left;
       .item-title
       {
-        font-size        : 14px;
+        font-size   : 14px;
+        line-height : 1em;
+        color       : $color-text-light;
       }
       .item-subtitle
       {
@@ -39,7 +69,27 @@
         border           : 1px solid $color-border;
         background-color : #fff;
         border-radius    : 4px;
-        padding          : 10px;
+        padding          : 0.5em 0.75em;
+        width            : auto;
+        margin-top       : 6px;
+        box-sizing       : border-box;
+        max-width        : 100%;
+        img
+        {
+          max-width : 100%;
+        }
+        &.type-image
+        {
+          padding : 3px;
+        }
+      }
+    }
+
+    &.is-send
+    {
+      .item-inner > .inner-content
+      {
+        text-align : right;
       }
     }
   }

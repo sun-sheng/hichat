@@ -6,8 +6,7 @@ var ChatSchema = new Schema({
   type: {type: String, default: 'p2p'},
   icon: String,
   title: String,
-  user_ids: [String],
-  messages: [Schema.Types.Mixed]
+  user_ids: [String]
 });
 ChatSchema.plugin(base);
 

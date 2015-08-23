@@ -137,6 +137,7 @@
 // 单行文字自动省略
 @mixin text-ellipsis
 {
+  display       : block;
   text-overflow : ellipsis;
   white-space   : nowrap;
   overflow      : hidden;

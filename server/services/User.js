@@ -42,7 +42,7 @@ module.exports = {
   },
   update: function (user) {
     return Q.Promise(function (resolve, reject) {
-      User.findByIdAndUpdate(user.id, user, function (err, user) {
+      User.findOneAndUpdate({id: user.id}, user, function (err, user) {
         if (err) return reject(util.createMongooseError(err));
         resolve(user);
       })
@@ -68,19 +68,5 @@ module.exports = {
 
   logout: function (user) {
     OnlineUser.remove(user);
-  },
-
-  fake: function (options) {
-    return _.extend({
-      id: Number(_.uniqueId()),
-      name: faker.name.firstName() + ' ' + faker.name.lastName(),
-      nickname: options.nickname || faker.name.firstName(),
-      gender: faker.random.array_element([0, 1]),
-      avatar: faker.internet.avatar(),
-      city: faker.address.city(),
-      signature: faker.lorem.sentence(),
-      email: faker.name.firstName() + '@demo.com',
-      mobile: faker.phone.phoneNumber()
-    }, options);
   }
 };

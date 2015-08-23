@@ -2,7 +2,9 @@ var _    = require('lodash');
 var Chat = require("../services/Chat");
 
 exports.find = function (req, res) {
-  Chat.find(req.query).then(function (chats) {
+  var query = req.query;
+  query.id = { $in: req.user.chat_ids };
+  Chat.find(query).then(function (chats) {
     res.json(chats);
   }, function (err) {
     res.status(err.code).json(err.message);

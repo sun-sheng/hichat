@@ -7,7 +7,7 @@
     <div pull-to-refresh="refresh()" data-ptr-ready="refresh()">
 
       <ul class="list chat-list">
-        <li class="list-item gap-10" ng-repeat="item in chats">
+        <li class="list-item gap-10" ng-repeat="item in data.chats">
           <div f7route="'chatDetail.html'" f7route-query="item" class="item-content">
             <div class="item-before position-relative">
               <img src="" lazy-src="{{item.icon}}" class="item-media"/>
@@ -17,14 +17,14 @@
                 <div class="item-title">
                   {{item.title}}
                   <div class="float-right font-12">
-                    {{item.messages[item.messages.length - 1].create_at | fromNow}}
+                    {{item.messages[item.messages.length - 1].created_at | fromNow}}
                   </div>
                 </div>
-                <div class="item-subtitle text-ellipsis">
-                  {{item.messages[item.messages.length - 1].content}}
-                  <div ng-show="item.messages.length > 0" class="text-badge bg-danger">
-                    {{item.messages.length < 99 ? item.messages.length : '99+'}}
-                  </div>
+                <div class="item-subtitle">
+                  <span class="text-ellipsis">{{item.messages[item.messages.length - 1].content}}</span>
+                  <span ng-show="item.unread > 0" class="text-badge bg-danger float-right">
+                    {{item.unread < 99 ? item.unread: '99+'}}
+                  </span>
                 </div>
                 <!-- subtitle end-->
               </div>
@@ -32,7 +32,7 @@
             </div>
           </div>
         </li>
-        <li class="list-empty" ng-hide="data.results.length > 0">
+        <li class="list-empty ng-hide" ng-show="data.isEmpty">
           暂无数据
         </li>
       </ul>

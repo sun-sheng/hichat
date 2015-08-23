@@ -77,15 +77,16 @@ module.exports = function (i18n, device) {
     if (device.isIos || device.isMac) {
       f7.confirm(text, title, okFunc, cancelFunc);
     } else {
+      var args = convert_arguments(arguments);
       f7.modal({
-        title: title,
-        text: text,
+        text: args[0],
+        title: args[1],
         buttons: [{
           text: i18n.global.ok,
-          onClick: okFunc
+          onClick: args[2]
         }, {
-          text: i18n.global.ok,
-          onClick: cancelFunc
+          text: i18n.global.cancel,
+          onClick: args[3]
         }]
       });
     }
@@ -146,7 +147,8 @@ module.exports = function (i18n, device) {
    * @param options
    */
   modal.createPhotoBrowser = function (options) {
-    if (!angular.isObject(options)) return false;
+    if (!angular.isObject(options) || !options.photos) return false;
+    options.theme        = options.theme || 'dark';
     options.backLinkText = options.backLinkText || '关闭';
     options.ofText       = options.ofText || ' / ';
     return f7.photoBrowser(options);

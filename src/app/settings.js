@@ -18,7 +18,7 @@ var settings = {
 };
 if (window.APP_MODEL === 'DEV') {
   //todo 修改本机 IP 方便手机测试
-  settings.apiOrigin = 'http://127.0.0.1:5001/api/';
+  settings.apiOrigin = '/api/';
   settings.chatSocket = 'http://127.0.0.1:5001/socket';
 }
 else if (window.APP_MODEL === 'TEST') {

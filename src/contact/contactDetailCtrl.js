@@ -10,7 +10,7 @@ module.exports = function ($scope, temp, modal) {
 
   $scope.showActionSheet = function () {
     if (!contact.mobile) return false;
-    modal.showActions(actionGroups);
+    modal.showActions(actions);
   };
 
 };

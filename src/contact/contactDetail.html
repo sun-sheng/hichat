@@ -1,32 +1,26 @@
 <div class="page contact-detail-page" ng-controller="contactDetailCtrl">
-  <navbar title="联系人详情"></navbar>
+  <navbar title=""></navbar>
   <div class="page-content">
+    <div class="detail-cover">
+      <img src="" lazy-src="{{contact.bg_image}}"/>
+    </div>
     <div class="detail-info">
-      <img src="assets/images/avatar.png" lazy-src="{{contact.avatar}}" alt="" class="avatar"/>
-
-      <div class="title" ng-bind="contact.nickname"></div>
-      <div class="subtitle" ng-bind="contact.signature"></div>
+      <div class="avatar-box">
+        <img src="assets/images/avatar.png" lazy-src="{{contact.avatar}}" alt="" class="avatar"/>
+      </div>
+      <div class="title" ng-bind="contact.name"></div>
+      <div class="subtitle">
+        {{contact.gender | gender}}
+        {{contact.city}}
+      </div>
     </div>
     <ul class="list">
       <li class="list-item">
         <div class="item-content">
           <div class="item-inner">
             <div class="inner-content">
-              <div class="item-title">{{contact.name}}</div>
-              <div class="item-subtitle">姓名</div>
-            </div>
-          </div>
-          <div class="item-after">
-            <i class="item-icon ico-email"></i>
-          </div>
-        </div>
-      </li>
-      <li class="list-item">
-        <div class="item-content">
-          <div class="item-inner">
-            <div class="inner-content">
-              <div class="item-title">{{contact.city}}</div>
-              <div class="item-subtitle">城市</div>
+              <div class="item-title">{{contact.nickname}}</div>
+              <div class="item-subtitle">昵称</div>
             </div>
           </div>
           <div class="item-after">

@@ -1,14 +1,12 @@
-var Chat  = require('../models/').chat;
-var faker = require('faker');
-var _     = require('lodash');
-var util  = require('../util');
-var Q     = require('q');
-faker.locale = 'en'; //'zh_CN';
+var Chat = require('../models/').chat;
+var _    = require('lodash');
+var util = require('../util');
+var Q    = require('q');
 
 module.exports = {
   get: function (id) {
     return Q.Promise(function (resolve, reject) {
-      Chat.findById(id, function (err, chat) {
+      Chat.findOne({id: id}, function (err, chat) {
         if (err) return reject(util.createMongooseError(err));
         if (!chat) return reject(util.createServiceError('聊天信息不存在'));
         resolve(chat);
@@ -17,6 +15,7 @@ module.exports = {
   },
   find: function (options) {
     return Q.Promise(function (resolve, reject) {
+      console.log(options);
       Chat.find(options, function (err, chats) {
         if (err) return reject(util.createMongooseError(err));
         chats = chats || [];
@@ -34,7 +33,7 @@ module.exports = {
   },
   update: function (chat) {
     return Q.Promise(function (resolve, reject) {
-      Chat.findByIdAndUpdate(chat.id, chat, function (err, chat) {
+      Chat.findOneAndUpdate({id: chat.id}, chat, function (err, chat) {
         if (err) return reject(util.createMongooseError(err));
         resolve(chat);
       })
@@ -42,7 +41,7 @@ module.exports = {
   },
   remove: function (id) {
     return Q.Promise(function (resolve, reject) {
-      Chat.findByIdAndUpdate(id, {deleted: true}, function (err) {
+      Chat.findOneAndUpdate({id: id}, {deleted: true}, function (err) {
         if (err) return reject(util.createMongooseError(err));
         resolve();
       })

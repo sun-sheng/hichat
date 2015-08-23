@@ -16,7 +16,7 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
     };
   }
 
-  function convertMessage (message) {
+  function convertMessage(message) {
     if (message.type === 'image') {
       message.content_html = util.replace('<img src="$1" />', message.content);
     } else if (message.type === 'link') {
@@ -34,13 +34,14 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
       if (chat) return chat;
       return $q.reject();
     }).then(function (chat) {
-      chat.messages.push(message);
-      chat.unread ++;
-      $rootScope.ui.unreadMessagesCount ++;
-      return chat;
-    }, function () {
-      var chat = createChat(message);
-      CHATS[chat.id] = chat;
+      if (message.user_id === $rootScope.currentUser.id) {
+        var index = _.findLastIndex(chat.messages, {client_id: message.client_id});
+        if (index !== -1) chat.messages[index] = message;
+      } else {
+        chat.messages.push(message);
+        chat.unread++;
+        $rootScope.ui.unreadMessagesCount++;
+      }
       return chat;
     }).then(function (chat) {
       var forage_key = getChatKey(chat.id);
@@ -52,14 +53,22 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
 
   var CHATS = {};
 
-  return {
+  var service = {
 
     init: function () {
       socket = io(settings.chatSocket);
       socket.emit('register', $rootScope.currentUser.id);
-      socket.on('message', saveMessage);
+      socket.on('message', function (message) {
+        saveMessage(message);
+        socket.emit('message:received', message.id);
+      });
       socket.on('messages', function (messages) {
-        _.each(messages, saveMessage);
+        var ids = [];
+        _.each(messages, function (message) {
+          saveMessage(message);
+          ids.push(message.id);
+        });
+        socket.emit('messages:received', ids);
       });
     },
 
@@ -70,27 +79,17 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
         return [];
       }).then(function (results) {
         CHATS = {};
-        $rootScope.ui.unreadMessagesCount = 0;
-        _.each(results, function (item) {
-          _.each(item.messages, convertMessage);
-        });
         return $forage.iterate(function (chat, key) {
           if (key.indexOf(constants.FORAGE_KEY.CHAT_PREFIX) !== 0) return true;
           util.eachRight(results, function (item, index) {
             if (item.id !== chat.id) return true;
-            chat.messages = chat.messages.concat(item.messages);
-            chat.unread += item.messages.length;
-            $rootScope.ui.unreadMessagesCount += chat.unread;
             results.splice(index, 1);
           });
           CHATS[chat.id] = chat;
         }, function () {
-          $rootScope.ui.unreadMessagesCount = 0;
           return true;
         }).then(function () {
           util.eachRight(results, function (chat) {
-            chat.unread = chat.messages.length;
-            $rootScope.ui.unreadMessagesCount += chat.unread;
             CHATS[chat.id] = chat;
             $forage.set(getChatKey(chat.id), chat);
           });
@@ -119,9 +118,37 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
 
     },
 
-    sendMessage: function (data) {
-      socket.emit('message', data);
-    }
+    sendMessage: function (message) {
+      if (!(message.chat_id && message.content)) return false;
+      message.user_id    = $rootScope.currentUser.id;
+      message.type       = message.type || 'text';
+      message.created_at = Date.now();
+      message.updated_at = message.created_at;
+      //todo
+      message.client_id  = message.created_at + '';
+      message.sending    = true;
+      var chat           = service.get(message.chat_id);
+      chat.messages.push(message);
+      socket.emit('message', message);
+    },
 
+    loadMessages: function (chat_id) {
+      return $http.get(settings.apiOrigin + 'messages', {
+        params: {
+          chat_id: chat_id,
+          receiver_id: $rootScope.currentUser.id
+        }
+      }).then(function (response) {
+        var messages  = response.data;
+        _.each(messages, convertMessage);
+        var chat      = service.get(chat_id);
+        chat.messages = messages;
+        return $forage.set(getChatKey(chat_id), chat).then(function (chat) {
+          CHATS[chat.id] = chat;
+          return chat;
+        });
+      });
+    }
   };
+  return service;
 };

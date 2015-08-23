@@ -1,5 +1,6 @@
 /*@ngInject*/
 module.exports = function ($q, $http, settings, constants, $forage) {
+
   var KEY_CONTACTS = constants.FORAGE_KEY.CONTACTS;
 
   return {
