@@ -5,14 +5,16 @@ module.exports = function ($scope, settings, chatService, modal, toast) {
   var data = {};
   $scope.data = data;
 
-  $scope.refresh = function () {
+  $scope.load = function () {
     if (loading) return false;
     loading = true;
     modal.showIndicator();
-    chatService.fetch().then(function (chats) {
+    chatService.load().then(function (chats) {
       data.chats = chats;
       data.isEmpty = _.keys(chats).length === 0;
-      _.each(chats, loadMessages);
+      _.each(chats, function (chat) {
+        if (!chat.messages.length) fetchMessages(chat);
+      });
     }, function (err) {
       toast.error('获取聊天信息失败：' + err.msg);
     }).finally(function () {
@@ -21,8 +23,12 @@ module.exports = function ($scope, settings, chatService, modal, toast) {
     });
   };
 
-  function loadMessages (chat) {
-    return chatService.loadMessages(chat.id);
+  $scope.refresh = function () {
+
+  };
+
+  function fetchMessages (chat) {
+    return chatService.fetchMessages(chat.id);
   }
 
 };

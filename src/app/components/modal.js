@@ -10,16 +10,21 @@ module.exports = function (i18n, device) {
       return false;
     }
     else if (args.length === 1) {
-      args[3] = function () {};
-      args[2] = function () {};
+      args[3] = function () {
+      };
+      args[2] = function () {
+      };
       args[1] = i18n.global.modal_title;
     }
     if (typeof args[1] === 'string') {
-      args[3] = args[3] || function () {};
-      args[2] = args[2] || function () {};
+      args[3] = args[3] || function () {
+        };
+      args[2] = args[2] || function () {
+        };
     }
     else if (typeof args[1] === 'function') {
-      args[3] = args[2] || function () {};
+      args[3] = args[2] || function () {
+        };
       args[2] = args[1];
       args[1] = i18n.global.modal_title;
     }
@@ -43,6 +48,7 @@ module.exports = function (i18n, device) {
   modal.showIndicator = function () {
     f7.showIndicator();
   };
+
   /**
    * 关闭加载指示器
    */
@@ -57,22 +63,25 @@ module.exports = function (i18n, device) {
   modal.showPreloader = function (title) {
     f7.showPreloader(title);
   };
+
   /**
    * 关闭带文本的加载指示器
    */
   modal.hidePreloader = function () {
     f7.hidePreloader();
   };
+
   /**
    * 弹出提醒框
    */
-  modal.alert         = function (text, title, okFunc) {
+  modal.alert = function (text, title, okFunc) {
     f7.alert(text, title, okFunc);
   };
+
   /**
    * 弹出确认框
    */
-  modal.confirm       = function (text, title, okFunc, cancelFunc) {
+  modal.confirm = function (text, title, okFunc, cancelFunc) {
 
     if (device.isIos || device.isMac) {
       f7.confirm(text, title, okFunc, cancelFunc);
@@ -91,37 +100,41 @@ module.exports = function (i18n, device) {
       });
     }
   };
+
   /**
    * 弹出文本输入框
    */
-  modal.prompt        = function (text, title, okFunc, cancelFunc) {
+  modal.prompt = function (text, title, okFunc, cancelFunc) {
     f7.prompt(text, title, okFunc, cancelFunc);
   };
+
   /**
    * 参照 framework7 api
    */
-  modal.f7actions     = function (options) {
+  modal.f7actions = function (options) {
     f7.actions(options);
   };
+
   /**
    * 封装 f7 actions
    * @param actions
    * @param options
    */
-  modal.showActions   = function (actions, options) {
+  modal.showActions = function (actions, options) {
+    options = _.assign({
+      title: '操作',
+      cancelText: '取消',
+      cancelColor: 'red'
+    }, options);
     var actionGroups = [
-      [
-        {
-          text: options.title || '操作',
-          label: true
-        }
-      ],
-      [
-        {
-          text: options.cancelText || '取消',
-          color: options.cancelColor || 'red'
-        }
-      ]
+      [{
+        text: options.title,
+        label: true
+      }],
+      [{
+        text: options.cancelText,
+        color: options.cancelColor
+      }]
     ];
     _.each(actions, function (action) {
       actionGroups[0].push(action);
@@ -132,16 +145,18 @@ module.exports = function (i18n, device) {
   /**
    * 关闭 打开的 modal
    */
-  modal.close              = function (selector) {
+  modal.close = function (selector) {
     f7.closeModal(selector);
   };
+
   /**
    * 发出蜂鸣声
    * @param times {number} 蜂鸣次数
    */
-  modal.beep               = function (times) {
+  modal.beep = function (times) {
     navigator.notification.beep(times);
   };
+
   /**
    * 图片浏览器 参阅 framework7 api
    * @param options
@@ -153,18 +168,20 @@ module.exports = function (i18n, device) {
     options.ofText       = options.ofText || ' / ';
     return f7.photoBrowser(options);
   };
+
   /**
    * picker 参阅 framework7 picker，注意当 scope 销毁时，调用返回 picker 对象的 destroy 方法
    * @param options
    */
-  modal.createPicker       = function (options) {
+  modal.createPicker = function (options) {
     return f7.picker(options);
   };
+
   /**
    * picker 参阅 framework7 calendar，注意当 scope 销毁时，调用返回 calendar 对象的 destroy 方法
    * @param options
    */
-  modal.createCalendar     = function (options) {
+  modal.createCalendar = function (options) {
     return f7.calendar(options);
   };
 

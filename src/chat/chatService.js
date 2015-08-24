@@ -79,15 +79,17 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
         return [];
       }).then(function (results) {
         CHATS = {};
+        _.each(results, function (item) {
+          item.messages = [];
+        });
         return $forage.iterate(function (chat, key) {
           if (key.indexOf(constants.FORAGE_KEY.CHAT_PREFIX) !== 0) return true;
-          util.eachRight(results, function (item, index) {
-            if (item.id !== chat.id) return true;
+          var index = _.findIndex(results, {id: chat.id});
+          if (index > -1) {
+            _.assign(chat, results[index]);
             results.splice(index, 1);
-          });
-          CHATS[chat.id] = chat;
-        }, function () {
-          return true;
+            CHATS[chat.id] = chat;
+          }
         }).then(function () {
           util.eachRight(results, function (chat) {
             CHATS[chat.id] = chat;
@@ -96,6 +98,16 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
           return CHATS;
         });
       });
+    },
+
+    load: function () {
+      return $forage.iterate(function (chat, key) {
+        if (key.indexOf(constants.FORAGE_KEY.CHAT_PREFIX) !== 0) return true;
+        CHATS[chat.id] = chat;
+      }).then(function () {
+        if (_.keys(CHATS).length > 0) return CHATS;
+        return $q.reject();
+      }).catch(this.fetch);
     },
 
     get: function (chat_id) {
@@ -132,7 +144,7 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
       socket.emit('message', message);
     },
 
-    loadMessages: function (chat_id) {
+    fetchMessages: function (chat_id) {
       return $http.get(settings.apiOrigin + 'messages', {
         params: {
           chat_id: chat_id,
@@ -149,6 +161,7 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
         });
       });
     }
+
   };
   return service;
 };

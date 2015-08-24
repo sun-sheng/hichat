@@ -1,7 +1,26 @@
 <div class="page" ng-controller="chatDetailCtrl">
 
   <navbar title="{{data.chat.title}}"></navbar>
-  <div class="chat-bar"></div>
+  <div class="chat-bar">
+    <div class="flex-box">
+      <form class="flex-box-item flex-1" ng-submit="sendMessage()">
+        <input class="bar-input" placeholder="" />
+      </form>
+      <div class="flex-box-item">
+        <div class="bar-toggle ico-plus"></div>
+      </div>
+    </div>
+    <div class="bar-actions">
+      <div class="bar-action">
+        <div class="action-icon ico-camera"></div>
+        <div class="action-text">拍照</div>
+      </div>
+      <div class="bar-action">
+        <div class="action-icon ico-photo-library"></div>
+        <div class="action-text">相册</div>
+      </div>
+    </div>
+  </div>
   <!-- page content -->
   <div class="page-content no-scroll">
 

@@ -43,11 +43,11 @@
     {
       .item-before
       {
-        padding-right: 10px;
+        padding-right : 10px;
       }
       .item-after
       {
-        padding-left: 10px;
+        padding-left : 10px;
       }
     }
 
@@ -97,8 +97,65 @@
 
 .chat-bar
 {
+  position         : absolute;
+  left             : 0;
+  right            : 0;
+  bottom           : 0;
+  z-index          : 500;
+  padding          : 10px 15px;
+  background-color : #fff;
+  .bar-input
+  {
+    display        : block;
+    width          : 100%;
+    box-sizing     : border-box;
+    font-size      : 14px;
+    line-height    : 25px;
+    height         : 30px;
+    padding-bottom : 5px;
+    border-bottom  : 1px solid $color-border;
+  }
+  .bar-toggle
+  {
+    display : block;
+    width   : 30px;
+    height  : 30px;
+  }
   .bar-actions
   {
-    display : none;
+    @include clearfix;
+    display    : none;
+    border-top : 1px solid $color-border;
   }
+  .bar-action
+  {
+    float : left;
+    width : 25%;
+
+    .action-icon,
+    .action-text
+    {
+      display    : block;
+      text-align : center;
+    }
+    .action-icon
+    {
+      border-radius : 5px;
+      margin        : auto;
+      width         : 40px;
+      height        : 40px;
+      font-size     : 36px;
+      border        : 1px solid $color-border;
+    }
+    .action-text
+    {
+      padding-top : 5px;
+      font-size   : 12px;
+    }
+  }
+}
+
+.chat-bar ~ .page-content
+{
+  padding-bottom : 50px;
 }

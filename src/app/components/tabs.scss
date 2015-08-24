@@ -17,6 +17,7 @@
     .tab-link
     {
       @include flex-box-item;
+      @include flex-1;
       text-align    : center;
       line-height   : 42px;
       color         : #999;

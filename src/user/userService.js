@@ -9,8 +9,8 @@ module.exports = function ($q, $http, constants, settings, $forage, device) {
     },
 
     forageCurrentUser: function (user) {
-      var expired_time = user.expired_time;
-      return $forage.set(KEY_USER, user, expired_time);
+      var expired_at = user.access_expired_at;
+      return $forage.set(KEY_USER, user, expired_at);
     },
 
     login: function (data) {

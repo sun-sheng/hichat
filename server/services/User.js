@@ -58,7 +58,8 @@ module.exports = {
       password: query.password
     }).then(function (user) {
       user.access_token = uuid.v4();
-      user.expired_time = Date.now() + 24 * 60 * 60 * 1000;
+      user.access_expired_at = Date.now() + 24 * 60 * 60 * 1000;
+      user.save();
       OnlineUser.add(user);
       return user;
     }, function () {

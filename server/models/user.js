@@ -1,6 +1,6 @@
-var mongoose  = require('mongoose');
-var Schema    = mongoose.Schema;
-var base = require('./plugins/base');
+var mongoose = require('mongoose');
+var Schema   = mongoose.Schema;
+var base     = require('./plugins/base');
 
 var UserSchema = new Schema({
   nickname: String,
@@ -16,7 +16,7 @@ var UserSchema = new Schema({
   contact_ids: [String],
   bg_image: String,
   access_token: String,
-  expired_time: Date
+  access_expired_at: Number
 });
 UserSchema.plugin(base);
 

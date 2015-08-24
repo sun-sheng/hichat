@@ -79,8 +79,8 @@ function createUser(options) {
     signature: faker.lorem.sentence(),
     email: firstName + '@demo.com',
     password: firstName,
-    mobile: faker.phone.phoneNumber(),
-    bg_image: faker.image.nature()
+    mobile: faker.phone.phoneNumber()
+    //bg_image: faker.image.nature(640, 400)
   }, options);
 }
 
@@ -89,8 +89,8 @@ function createMessages(chat, user_id, time) {
   var message = {
     chat_id: chat.id,
     user_id: user_id,
-    created_time: time,
-    updated_time: time,
+    created_at: time,
+    updated_at: time,
     type: 'text',
     content: faker.lorem.sentence()
   };
@@ -201,29 +201,27 @@ function init() {
       temp.admin = _.last(users);
       return createAdminContacts();
     }).then(function () {
-      return initAdminChats()
+      return initAdminChats();
     }).then(function (chats) {
       _.each(chats, function (chat) {
         _.each(chat.user_ids, function (user_id) {
+          //console.log(user_id);
+          //console.log(typeof user_id);
+          //console.log(typeof temp.users[0].id);
           var user = _.find(temp.users, {id: user_id});
           user.chat_ids.push(chat.id);
-          user.save(function (err, user) {
-            if (err) return console.log('update user chat_ids and contact_ids failed : ' + err);
-            console.log('update user chat_ids and contact_ids success');
-          });
+        });
+      });
+      _.each(temp.users, function (user) {
+        user.save(function (err, user) {
+          if (err) return console.log('update user chat_ids and contact_ids failed : ' + err);
+          console.log('update user chat_ids and contact_ids success');
         });
       });
       initMessages(chats);
     }).catch(function (err) {
       console.log('error : ' + err);
     });
-  });
-}
-
-function countUsers() {
-  User.count(function (err, count) {
-    if (err) return console.log('count users error : ' + err);
-    console.log('the users count is : ' + count);
   });
 }
 

@@ -7,13 +7,13 @@ var uuid = require('node-uuid');
 module.exports = function (schema) {
 
   schema.set('toJSON', {virtuals: true});
-  schema.set('_id', false);
   schema.add({
-    id: String,
-    created_at: {type: Number},
-    updated_at: {type: Number},
+    id: {type: String, default: uuid.v1},
+    created_at: {type: Number, default: Date.now},
+    updated_at: {type: Number, default: Date.now},
     deleted: {type: Boolean, default: false}
   });
+  /*
   schema.pre('save', function (next) {
     var now         = Date.now();
     var root        = this;
@@ -22,4 +22,5 @@ module.exports = function (schema) {
     if (!root.id) root.id = uuid.v1();
     next();
   });
+  */
 };

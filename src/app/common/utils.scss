@@ -120,16 +120,20 @@
 {
   @include flex-box;
 }
+.flex-align-top
+{
+  @include flex-align-top;
+}
 
 .flex-box-item
 {
   @include flex-box-item;
 }
-
-.flex-align-top
-{
-  @include flex-align-top;
+.flex-1 {
+  @include flex-1;
 }
+
+
 
 .text-underline
 {
