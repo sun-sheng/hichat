@@ -48,7 +48,7 @@ gulp.task('clean', function () {
 
 gulp.task('browserify', function () {
   return gulp.src(
-    './src/index.js'
+    './client/index.js'
   ).pipe(
     browserify({
       debug: process.env.MODEL !== 'release'
@@ -75,7 +75,7 @@ gulp.task('uglify', ['browserify', 'ng-templates'], function () {
 });
 
 gulp.task('scss', function () {
-  return sass('./src/index.scss').on('error', function (err) {
+  return sass('./client/index.scss').on('error', function (err) {
     console.error('Error!', err.message);
   }).pipe(
     rename('app.css')
@@ -98,8 +98,8 @@ gulp.task('minify-css', ['scss'], function () {
 
 gulp.task('ng-templates', function () {
   gulp.src([
-    './src/**/*.html',
-    '!./src/index.html'
+    './client/**/*.html',
+    '!./client/index.html'
   ]).pipe(
     minifyHtml({
       empty: true,
@@ -181,7 +181,7 @@ gulp.task('concat-all-css', function () {
 
 gulp.task('replace-html', function () {
   return gulp.src(
-    './src/index.html'
+    './client/index.html'
   ).pipe(
     replaceHtml(replaceHtmlOptions)
   ).pipe(
@@ -213,9 +213,9 @@ gulp.task('replace-cordova-html:dist', function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch('src/**/*.js', ['browserify']);
-  gulp.watch('./src/**/*.scss', ['scss']);
-  gulp.watch(['./src/**/*.html', '!./src/index.html'], ['ng-templates']);
+  gulp.watch('./client/**/*.js', ['browserify']);
+  gulp.watch('./client/**/*.scss', ['scss']);
+  gulp.watch(['./client/**/*.html', '!./client/index.html'], ['ng-templates']);
 });
 
 gulp.task('server', function () {
