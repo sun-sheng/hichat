@@ -1,14 +1,17 @@
 /*@ngInject*/
-module.exports = function ($scope, settings, chatService, contactService, modal, util, toast) {
+module.exports = function ($scope, $templateCache, settings, chatService, contactService, modal, util, camera, toast) {
 
   var loading = false;
   var chat    = $scope.f7page.query;
   var data    = {
     chat: chat,
+    text: '',
     limitTo: - settings.page_size_sm
   };
 
   var $list = $$($scope.f7page.container).find('.chat-message-list');
+
+  var compile_messages = Template7.compile($templateCache.get('chat-message-t7.html'));
 
   var events = [{
     event: 'click',
@@ -43,6 +46,7 @@ module.exports = function ($scope, settings, chatService, contactService, modal,
       data.users[contact.id] = contact;
     });
     $scope.data = data;
+
   });
 
   $scope.loadMore = function () {
@@ -55,8 +59,39 @@ module.exports = function ($scope, settings, chatService, contactService, modal,
     $scope.$digest();
   };
 
-  $scope.sendMessage = function () {
-    chatService.sendMessage();
+  $scope.toggleInputActions = function () {
+    $scope.inputActionsVisiable = ! $scope.inputActionsVisiable;
+  };
+
+  $scope.sendImageByCamera = function () {
+    camera.getPicture().then(sendImage, function (err) {
+      toast.error('获取图片失败：' + err.msg);
+    });
+  };
+
+  $scope.sendImageByLibrary = function () {
+    camera.getPicture({sourceType: 0}).then(sendImage, function (err) {
+      toast.error('获取图片失败：' + err.msg);
+    });
+  };
+
+  function sendImage (uri) {
+    chatService.sendMessage({
+      content: uri,
+      type: 'image',
+      chat_id: data.chat.id
+    });
+  }
+
+  $scope.sendText = function () {
+    chatService.sendMessage({
+      content: data.text,
+      chat_id: data.chat.id
+    }).then(function () {
+      data.text = '';
+    }, function (err) {
+      toast.error('消息发送失败' + err.msg);
+    });
   };
 
 };

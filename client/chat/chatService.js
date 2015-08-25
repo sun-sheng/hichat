@@ -57,7 +57,12 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
 
     init: function () {
       socket = io(settings.chatSocket);
-      socket.emit('register', $rootScope.currentUser.id);
+      socket.on('connect', function () {
+        socket.emit('register', $rootScope.currentUser.access_token);
+      });
+      socket.on('error', function (data) {
+        console.log(data);
+      });
       socket.on('message', function (message) {
         saveMessage(message);
         socket.emit('message:received', message.id);
@@ -105,7 +110,7 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
         if (key.indexOf(constants.FORAGE_KEY.CHAT_PREFIX) !== 0) return true;
         CHATS[chat.id] = chat;
       }).then(function () {
-        if (_.keys(CHATS).length > 0) return CHATS;
+        if (_.size(CHATS) > 0) return CHATS;
         return $q.reject();
       }).catch(this.fetch);
     },
@@ -131,17 +136,20 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
     },
 
     sendMessage: function (message) {
-      if (!(message.chat_id && message.content)) return false;
-      message.user_id    = $rootScope.currentUser.id;
-      message.type       = message.type || 'text';
-      message.created_at = Date.now();
-      message.updated_at = message.created_at;
-      //todo
-      message.client_id  = message.created_at + '';
-      message.sending    = true;
-      var chat           = service.get(message.chat_id);
-      chat.messages.push(message);
-      socket.emit('message', message);
+      return $q(function (resolve, reject) {
+        if (!(message.chat_id && message.content)) return reject({msg: '消息格式有误'});
+        message.user_id    = $rootScope.currentUser.id;
+        message.type       = message.type || 'text';
+        message.created_at = Date.now();
+        message.updated_at = message.created_at;
+        //todo
+        message.client_id  = message.created_at + '';
+        message.sending    = true;
+        var chat           = service.get(message.chat_id);
+        socket.emit('message', message);
+        chat.messages.push(convertMessage(message));
+        resolve();
+      });
     },
 
     fetchMessages: function (chat_id) {

@@ -16,6 +16,8 @@
 {
   font-family             : 'ico';
   speak                   : none;
+  color                   : inherit;
+  line-height             : inherit;
   font-style              : normal;
   font-weight             : normal;
   font-variant            : normal;
@@ -26,47 +28,12 @@
   -moz-osx-font-smoothing : grayscale;
 }
 
-.ico-bk-actions:before
-{
-  content : "\e600";
-}
-
-.ico-bk-actions-outline:before
-{
-  content : "\e611";
-}
-
-.ico-bk-users:before
-{
-  content : "\e606";
-}
-
-.ico-bk-users-outline:before
-{
-  content : "\e605";
-}
-
-.ico-bk-user:before
-{
-  content : "\e609";
-}
-
-.ico-bk-user-outline:before
-{
-  content : "\e608";
-}
-
-.ico-bk-location:before
-{
-  content : "\e607";
-}
-
-.ico-info:before
+.ico-info2:before
 {
   content : "\e601";
 }
 
-.ico-refresh:before
+.ico-refresh2:before
 {
   content : "\e602";
 }
@@ -81,29 +48,9 @@
   content : "\e604";
 }
 
-.ico-download:before
-{
-  content : "\e612";
-}
-
 .ico-lock:before
 {
   content : "\e60a";
-}
-
-.ico-arch:before
-{
-  content : "\e614";
-}
-
-.ico-telephone:before
-{
-  content : "\e60d";
-}
-
-.ico-mobile:before
-{
-  content : "\e619";
 }
 
 .ico-search:before
@@ -116,76 +63,6 @@
   content : "\e610";
 }
 
-.ico-rst-toggle:before
-{
-  content : "\e616";
-}
-
-.ico-note:before
-{
-  content : "\e617";
-}
-
-.ico-rst-home:before
-{
-  content : "\e618";
-}
-
-.ico-rst-house:before
-{
-  content : "\e61a";
-}
-
-.ico-email:before
-{
-  content : "\f003";
-}
-
-.ico-times:before
-{
-  content : "\e60c";
-}
-
-.ico-checked:before
-{
-  content : "\e613";
-}
-
-.ico-close:before
-{
-  content : "\e615";
-}
-
-.ico-arrow-back:before
-{
-  content : "\e60e";
-}
-
-.ico-arrow-forward:before
-{
-  content : "\e60f";
-}
-
-.ico-gps-fixed:before
-{
-  content : "\e61c";
-}
-
-.ico-equalizer:before
-{
-  content : "\e61b";
-}
-
-.ico-restaurant-menu:before
-{
-  content : "\e61d";
-}
-
-.ico-assignment:before
-{
-  content : "\e61e";
-}
-
 .ico-message:before
 {
   content : "\e61f";
@@ -196,54 +73,208 @@
   content : "\e620";
 }
 
-.ico-actions:before
-{
-  content : "\e621";
-}
-
 .ico-me:before
 {
   content : "\e622";
 }
 
-.ico-3rd-action:before
+.ico-error:before
 {
-  content : "\e0ad";
+  content : "\e000";
 }
 
-.ico-forward:before
+.ico-error-o:before
 {
-  content : "\e078";
+  content : "\e001";
 }
 
-.ico-angle-down:before
+.ico-warning:before
 {
-  content : "\e201";
+  content : "\e002";
 }
 
-.ico-angle-up:before
+.ico-equalizer:before
 {
-  content : "\e203";
+  content : "\e007";
 }
 
-.ico-chevron-left:before
+.ico-new_releases:before
 {
-  content : "\e207";
+  content : "\e016";
 }
 
-.ico-chevron-right:before
+.ico-phone:before
 {
-  content : "\e208";
+  content : "\e057";
 }
 
-.ico-chevron-up:before
+.ico-add:before
 {
-  content : "\e20a";
+  content : "\e069";
+}
+
+.ico-add-circle:before
+{
+  content : "\e06b";
+}
+
+.ico-add-circle-o:before
+{
+  content : "\e06c";
+}
+
+.ico-block:before
+{
+  content : "\e06f";
+}
+
+.ico-remove-circle:before
+{
+  content : "\e080";
+}
+
+.ico-remove-circle-o:before
+{
+  content : "\e081";
+}
+
+.ico-report:before
+{
+  content : "\e084";
 }
 
 .ico-chevron-down:before
 {
-  content : "\e20b";
+  content : "\e10f";
 }
 
+.ico-chevron-left:before
+{
+  content : "\e110";
+}
+
+.ico-chevron-right:before
+{
+  content : "\e111";
+}
+
+.ico-chevron-up:before
+{
+  content : "\e112";
+}
+
+.ico-photo-camera:before
+{
+  content : "\e144";
+}
+
+.ico-photo:before
+{
+  content : "\e1a2";
+}
+
+.ico-camera:before
+{
+  content : "\e1a4";
+}
+
+.ico-tag-faces:before
+{
+  content : "\e1b1";
+}
+
+.ico-email:before
+{
+  content : "\e1ec";
+}
+
+.ico-my-location:before
+{
+  content : "\e1f4";
+}
+
+.ico-arrow-back:before
+{
+  content : "\e200";
+}
+
+.ico-arrow-forward:before
+{
+  content : "\e204";
+}
+
+.ico-times:before
+{
+  content : "\e205";
+}
+
+.ico-check:before
+{
+  content : "\e206";
+}
+
+.ico-close:before
+{
+  content : "\e209";
+}
+
+.ico-refresh:before
+{
+  content : "\e211";
+}
+
+.ico-phone-in-talk:before
+{
+  content : "\e223";
+}
+
+.ico-wifi:before
+{
+  content : "\e242";
+}
+
+.ico-times-o:before
+{
+  content : "\e29c";
+}
+
+.ico-info:before
+{
+  content : "\e2a2";
+}
+
+.ico-info-o:before
+{
+  content : "\e2a3";
+}
+
+.ico-help-o:before
+{
+  content : "\e30f";
+}
+
+.ico-image2:before
+{
+  content : "\e600";
+}
+
+.ico-camera2:before
+{
+  content : "\e605";
+}
+
+.ico-spinner2:before
+{
+  content : "\e606";
+}
+
+.ico-spinner9:before
+{
+  content : "\e607";
+}
+
+.ico-spinner10:before
+{
+  content : "\e608";
+}
 

@@ -3,20 +3,20 @@
   <navbar title="{{data.chat.title}}"></navbar>
   <div class="chat-bar">
     <div class="flex-box">
-      <form class="flex-box-item flex-1" ng-submit="sendMessage()">
-        <input class="bar-input" placeholder="" />
+      <form class="flex-box-item flex-1" ng-submit="sendText()">
+        <input class="bar-input" ng-model="data.text" placeholder="" />
       </form>
       <div class="flex-box-item">
-        <div class="bar-toggle ico-plus"></div>
+        <div class="bar-toggle" ng-click="toggleInputActions()"></div>
       </div>
     </div>
-    <div class="bar-actions">
-      <div class="bar-action">
+    <div class="bar-actions ng-hide" ng-show="inputActionsVisiable">
+      <div class="bar-action" ng-click="sendImageByCamera()">
         <div class="action-icon ico-camera"></div>
         <div class="action-text">拍照</div>
       </div>
-      <div class="bar-action">
-        <div class="action-icon ico-photo-library"></div>
+      <div class="bar-action" ng-click="sendImageByLibrary()">
+        <div class="action-icon ico-photo"></div>
         <div class="action-text">相册</div>
       </div>
     </div>
@@ -28,13 +28,14 @@
          data-infinite-scroll-disabled="data.isEnd" data-infinite-scroll-text="加载更多">
 
       <ul class="list chat-message-list">
-        <li class="list-item" ng-class="{'is-send': item.user_id === currentUser.id}" ng-repeat="item in data.chat.messages | limitTo : data.limitTo">
+        <li class="list-item" ng-class="{'is-send': item.user_id === currentUser.id, 'sending': item.sending}"
+            ng-repeat="item in data.chat.messages track by $index | limitTo : data.limitTo">
           <div class="item-head">
             <div class="item-time" ng-bind="item.created_at | fromNow"></div>
           </div>
           <div class="item-content flex-align-top">
             <div class="item-before" ng-if="item.user_id !== currentUser.id">
-              <img class="item-media" src="assets/images/avatar.png" lazy-src="{{data.users[item.user_id].avatar}}" />
+              <img class="item-media" src="assets/images/image-loading.gif" lazy-src="{{data.users[item.user_id].avatar}}" />
             </div>
             <div class="item-inner">
               <div class="inner-content">
@@ -43,7 +44,7 @@
               </div>
             </div>
             <div class="item-after" ng-if="item.user_id === currentUser.id">
-              <img class="item-media" src="assets/images/avatar.png" lazy-src="{{data.users[item.user_id].avatar}}" />
+              <img class="item-media" src="assets/images/image-loading.gif" lazy-src="{{data.users[item.user_id].avatar}}" />
             </div>
           </div>
         </li>

@@ -63,6 +63,7 @@
       .item-subtitle
       {
         display          : inline-block;
+        position         : relative;
         font-size        : 14px;
         word-break       : break-all;
         color            : $color-text-light;
@@ -85,11 +86,46 @@
       }
     }
 
+    &.sending
+    {
+      .item-subtitle
+      {
+        margin-right: 30px;
+        &:before
+        {
+          @include font-ico;
+          @include animation-spin;
+          display     : block;
+          content     : "\e607";
+          position    : absolute;
+          right       : -30px;
+          top         : 0;
+          bottom      : 0;
+          width       : 24px;
+          height      : 24px;
+          text-align  : center;
+          line-height : 24px;
+          font-size   : 20px;
+          margin      : auto;
+        }
+      }
+    }
+
     &.is-send
     {
       .item-inner > .inner-content
       {
         text-align : right;
+      }
+      .item-subtitle
+      {
+        margin-left: 30px;
+        margin-right: 0;
+        &:before
+        {
+          left: -30px;
+          right: auto;
+        }
       }
     }
   }
@@ -97,41 +133,72 @@
 
 .chat-bar
 {
+  $color-border : #dedede;
   position         : absolute;
   left             : 0;
   right            : 0;
   bottom           : 0;
   z-index          : 500;
-  padding          : 10px 15px;
+  padding          : 5px 15px;
   background-color : #fff;
   .bar-input
   {
-    display        : block;
-    width          : 100%;
-    box-sizing     : border-box;
-    font-size      : 14px;
-    line-height    : 25px;
-    height         : 30px;
-    padding-bottom : 5px;
-    border-bottom  : 1px solid $color-border;
+    display       : block;
+    width         : 100%;
+    box-sizing    : border-box;
+    font-size     : 14px;
+    line-height   : 20px;
+    height        : 30px;
+    padding       : 5px;
+    border        : 1px solid $color-border;
+    border-radius : 5px;
   }
   .bar-toggle
   {
-    display : block;
-    width   : 30px;
-    height  : 30px;
+    position      : relative;
+    display       : block;
+    width         : 28px;
+    height        : 28px;
+    line-height   : 28px;
+    border        : 1px solid $color-border;
+    border-radius : 50%;
+    margin-left   : 10px;
+    &:before, &:after
+    {
+      display          : block;
+      content          : "";
+      position         : absolute;
+      top              : 0;
+      bottom           : 0;
+      left             : 0;
+      right            : 0;
+      margin           : auto;
+      background-color : $color-border;
+    }
+    &:before
+    {
+      left   : 25%;
+      right  : 25%;
+      height : 2px;
+    }
+    &:after
+    {
+      top    : 25%;
+      bottom : 25%;
+      width  : 2px;
+    }
   }
   .bar-actions
   {
     @include clearfix;
-    display    : none;
-    border-top : 1px solid $color-border;
+    margin      : 0 -15px;
+    padding-top : 10px;
   }
   .bar-action
   {
     float : left;
     width : 25%;
-
+    color : $color-text-light;
     .action-icon,
     .action-text
     {
@@ -142,8 +209,9 @@
     {
       border-radius : 5px;
       margin        : auto;
-      width         : 40px;
-      height        : 40px;
+      width         : 50px;
+      height        : 50px;
+      line-height   : 50px;
       font-size     : 36px;
       border        : 1px solid $color-border;
     }

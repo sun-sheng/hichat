@@ -9,8 +9,10 @@ module.exports = function () {
         var img;
         img        = new Image();
         img.src    = src;
+        $element.addClass('lazy-loading');
         img.onload = function () {
           element.src = src;
+          $element.removeClass('lazy-loading');
         };
       }
 

@@ -175,14 +175,14 @@ function initAdminChats() {
 function initMessages(chats) {
 
   var min = 1000;
-  var max = 5 * 60 * 1000;
+  var max = 60 * 60 * 1000;
   var messages  = [];
   _.each(chats, function (chat) {
     var count = _.random(chat.user_ids.length, chat.user_ids.length + 50);
-    var now   = Date.now() - (count * max);
-    _.times(count, function (index) {
+    var time   = Date.now() - (count * max);
+    _.times(count, function () {
+      time += _.random(min, max);
       var user_id = _.sample(chat.user_ids);
-      var time = now + (index * max) + _.random(min, max);
       var results = createMessages(chat, user_id, time);
       messages = messages.concat(results);
     });
