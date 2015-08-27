@@ -46,6 +46,10 @@ gulp.task('clean', function () {
   );
 });
 
+gulp.task('copy', function () {
+  return gulp.src('./client/assets').pipe(gulp.dest(DEST));
+});
+
 gulp.task('browserify', function () {
   return gulp.src(
     './client/index.js'
@@ -243,7 +247,7 @@ gulp.task('open-browser', function () {
   );
 });
 
-gulp.task('dev-base', ['concat-lib-js', 'concat-lib-css', 'browserify', 'ng-templates', 'scss'], function () {
+gulp.task('dev-base', ['copy', 'concat-lib-js', 'concat-lib-css', 'browserify', 'ng-templates', 'scss'], function () {
   replaceHtmlOptions.js = ['lib.js', 'app.js', 'app-templates.js'];
   replaceHtmlOptions.css = ['lib.css', 'app.css'];
   replaceHtmlOptions.model.tpl = replaceHtmlOptionsModelTpl.replace('[MODEL]', 'DEV');
@@ -254,7 +258,7 @@ gulp.task('dev', ['dev-base', 'server', 'watch'], function () {
   gulp.start('open-browser');
 });
 
-gulp.task('release-base', ['minify-css', 'uglify'], function () {
+gulp.task('release-base', ['copy', 'minify-css', 'uglify'], function () {
   gulp.start(['concat-all-js', 'concat-all-css']);
 });
 
