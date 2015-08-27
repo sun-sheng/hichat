@@ -1,46 +1,51 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="me.ele.coffee" version="2.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>EVE</name>
-    <description>
-        ele.me eve app
-    </description>
-    <author email="bpm@ele.me" href="http://ele.me">
-        bpm@ele.me
-    </author>
-    <content src="index.html" />
-    <plugin name="cordova-plugin-whitelist" version="1" />
-    <access origin="*" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="https://*/*" />
-    <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
-    <allow-intent href="mailto:*" />
-    <allow-intent href="geo:*" />
+<widget id="org.upsun.hichat" version="1.0.0" xmlns="http://www.w3.org/ns/widgets"
+        xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Hi.Chat</name>
+  <description>
+    hichat web app
+  </description>
+  <author email="sunsheng.cn@gmail.com" href="http://github.com/sun-sheng/hichat">
+    sunsheng.cn@gmail.com
+  </author>
+  <content src="index.html"/>
+  <plugin name="cordova-plugin-whitelist" version="1"/>
+  <access origin="*"/>
+  <allow-intent href="http://*/*"/>
+  <allow-intent href="https://*/*"/>
+  <allow-intent href="tel:*"/>
+  <allow-intent href="sms:*"/>
+  <allow-intent href="mailto:*"/>
+  <allow-intent href="geo:*"/>
 
-    <preference name="DisallowOverscroll" value="true"/>
+  <preference name="DisallowOverscroll" value="true"/>
 
-    <platform name="android">
-        <allow-intent href="market:*" />
-        <icon src="res/icon.png" />
-        <splash src="res/screens/android/splash-port-ldpi.png" density="port-ldpi"/> <!--200*320-->
-        <splash src="res/screens/android/splash-port-mdpi.png" density="port-mdpi"/> <!--320*480-->
-        <splash src="res/screens/android/splash-port-hdpi.png" density="port-hdpi"/> <!--480*800-->
-        <splash src="res/screens/android/splash-port-xhdpi.png" density="port-xhdpi"/><!--720*1280-->
+  <platform name="android">
+    <allow-intent href="market:*"/>
+    <icon src="res/icon.png"/>
+    <splash src="res/screens/android/splash-port-ldpi.png" density="port-ldpi"/>
+    <!--200*320-->
+    <splash src="res/screens/android/splash-port-mdpi.png" density="port-mdpi"/>
+    <!--320*480-->
+    <splash src="res/screens/android/splash-port-hdpi.png" density="port-hdpi"/>
+    <!--480*800-->
+    <splash src="res/screens/android/splash-port-xhdpi.png" density="port-xhdpi"/>
+    <!--720*1280-->
 
-    </platform>
-    <platform name="ios">
-        <allow-intent href="itms:*" />
-        <allow-intent href="itms-apps:*" />
-        <icon src="res/icon.png" />
-        <splash src="res/screens/ios/Default~iphone.png" width="320" height="480"/>
-        <splash src="res/screens/ios/Default@2x~iphone.png" width="640" height="960"/>
-        <splash src="res/screens/ios/Default-Portrait~ipad.png" width="768" height="1024"/>
-        <splash src="res/screens/ios/Default-Portrait@2x~ipad.png" width="1536" height="2048"/>
-        <splash src="res/screens/ios/Default-Landscape~ipad.png" width="1024" height="768"/>
-        <splash src="res/screens/ios/Default-Landscape@2x~ipad.png" width="2048" height="1536"/>
-        <splash src="res/screens/ios/Default-568h@2x~iphone.png" width="640" height="1136"/>
-        <splash src="res/screens/ios/Default-667h.png" width="750" height="1334"/>
-        <splash src="res/screens/ios/Default-736h.png" width="1242" height="2208"/>
-        <splash src="res/screens/ios/Default-Landscape-736h.png" width="2208" height="1242"/>
-    </platform>
+  </platform>
+  <platform name="ios">
+    <allow-intent href="itms:*"/>
+    <allow-intent href="itms-apps:*"/>
+    <icon src="res/icon.png"/>
+    <splash src="res/screens/ios/Default~iphone.png" width="320" height="480"/>
+    <splash src="res/screens/ios/Default@2x~iphone.png" width="640" height="960"/>
+    <splash src="res/screens/ios/Default-Portrait~ipad.png" width="768" height="1024"/>
+    <splash src="res/screens/ios/Default-Portrait@2x~ipad.png" width="1536" height="2048"/>
+    <splash src="res/screens/ios/Default-Landscape~ipad.png" width="1024" height="768"/>
+    <splash src="res/screens/ios/Default-Landscape@2x~ipad.png" width="2048" height="1536"/>
+    <splash src="res/screens/ios/Default-568h@2x~iphone.png" width="640" height="1136"/>
+    <splash src="res/screens/ios/Default-667h.png" width="750" height="1334"/>
+    <splash src="res/screens/ios/Default-736h.png" width="1242" height="2208"/>
+    <splash src="res/screens/ios/Default-Landscape-736h.png" width="2208" height="1242"/>
+  </platform>
 </widget>

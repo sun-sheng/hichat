@@ -11,7 +11,7 @@ exports.auth = function (req, res, next) {
     next();
     return true;
   }
-  User.find({access_token: access_token}).then(function (user) {
+  User.findOne({access_token: access_token}).then(function (user) {
     if (user.access_expired_at < Date.now()) return Q.reject();
     return user;
   }).then(function (user) {

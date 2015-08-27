@@ -5,6 +5,9 @@ module.exports = function ($rootScope, $scope, commonService, modal, toast, devi
       device.openBrowser(url);
     });
   };
+  $scope.checkUpdate = function () {
+    toast.success('当前是最新版本');
+  };
   $scope.clearCache = function () {
     modal.confirm('确认清除缓存吗？', function () {
       commonService.clearCache().then(function () {

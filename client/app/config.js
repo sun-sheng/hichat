@@ -1,11 +1,16 @@
 /*@ngInject*/
-module.exports = function ($httpProvider, $forageProvider) {
+module.exports = function ($httpProvider, $forageProvider, toastProvider) {
 
   $forageProvider.config({
     transformError: function (err) {
       err.msg = err.massege;
       return err;
     }
+  });
+
+  toastProvider.config({
+    distinct: true,
+    mobile: true
   });
 
   $httpProvider.defaults.headers.common['HTTP-SIGNATURE'] = 'not implemented';

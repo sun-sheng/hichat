@@ -3,8 +3,11 @@ hichat
 
 ### 1 搭建项目开发环境
 
-#### 1.1 安装 node.js 和 npm
-
+#### 1.1 安装
+    * node.js
+    * ruby
+    * python
+    * jdk
 #### 1.2 安装 cordova bower gulp nodemon
     npm install -g cordova bower gulp nodemon
 #### 1.3 安装 android-sdk 
@@ -24,19 +27,13 @@ hichat
     npm install
     bower install
     //
-    cordova create cordova org.upsun.hichat hichat
-    cp -rf _cordova/** cordova
+    cordova create cordova org.upsun.hichat Hi.Chat
+    cp -rf cordova_files/** cordova
     cd cordova
     cordova platform add ios
     cordova platform add android
     //
     cordova plugin add cordova-plugin-device cordova-plugin-dialogs cordova-plugin-inappbrowser cordova-plugin-camera cordova-plugin-file cordova-plugin-file-transfer
-    //for 定位
-    cordova plugin add cordova-plugin-geolocation https://github.com/eleme/phonegap_baidu_sdk_location#baidu 
-    //for 推送
-    cordova plugin add https://github.com/phonegap-build/PushPlugin.git https://github.com/eleme/cordova.xinge.git 
-    //for bd 系统
-    cordova plugin add com.ionic.keyboard
     //for debug 
     //cordova-plugin-console
     

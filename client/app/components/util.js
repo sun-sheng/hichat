@@ -56,7 +56,7 @@ module.exports = function () {
       if (!startOfToadyTime) {
         startOfToadyTime = moment().startOf('day').valueOf();
       }
-      formats   = formats || ['a H:mm', '昨天 H:mm', '前天 H:mm', 'YYYY年M月D日 H:mm'];
+      formats   = formats || ['a H:mm', '昨天 H:mm', '前天 H:mm', 'M月D日 H:mm'];
       var mom   = moment(time);
       var time1 = startOfToadyTime - ONE_DAY_TIME;
       var time2 = time1 - ONE_DAY_TIME;

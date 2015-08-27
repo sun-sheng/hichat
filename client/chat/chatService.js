@@ -18,7 +18,7 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
 
   function convertMessage(message) {
     if (message.type === 'image') {
-      message.content_html = util.replace('<img src="$1" />', message.content);
+      message.content_html = util.replace('<img src="$1"/>', message.content);
     } else if (message.type === 'link') {
       message.content_html = util.replace('<a href="$1">$1</a>', message.content);
     } else {

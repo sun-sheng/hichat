@@ -1,7 +1,21 @@
 <div class="page" ng-controller="chatDetailCtrl">
 
-  <navbar title="{{data.chat.title}}"></navbar>
-  <div class="chat-bar">
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="link-icon ico-arrow-back"></i>
+        </a>
+      </div>
+      <div class="right">
+        <a f7route="'chatConfig.html'" f7route-query="data.chat" class="link">
+          <i class="link-icon ico-setting"></i>
+        </a>
+      </div>
+    </div>
+    <div class="navbar-title">{{data.chat.title}}</div>
+  </div>
+  <div class="chat-bar" ng-class="{'show-actions': inputActionsVisiable}">
     <div class="flex-box">
       <form class="flex-box-item flex-1" ng-submit="sendText()">
         <input class="bar-input" ng-model="data.text" placeholder="" />
@@ -10,7 +24,7 @@
         <div class="bar-toggle" ng-click="toggleInputActions()"></div>
       </div>
     </div>
-    <div class="bar-actions ng-hide" ng-show="inputActionsVisiable">
+    <div class="bar-actions">
       <div class="bar-action" ng-click="sendImageByCamera()">
         <div class="action-icon ico-camera"></div>
         <div class="action-text">拍照</div>
@@ -26,25 +40,19 @@
 
     <div class="infinite-scroll-top" infinite-scroll="loadMore()"
          data-infinite-scroll-disabled="data.isEnd" data-infinite-scroll-text="加载更多">
-
-      <ul class="list chat-message-list">
-        <li class="list-item" ng-class="{'is-send': item.user_id === currentUser.id, 'sending': item.sending}"
-            ng-repeat="item in data.chat.messages track by $index | limitTo : data.limitTo">
+      <ul class="chat-message-list">
+        <li class="list-item" ng-class="{'is-send': item.user_id === currentUser.id, 'sending' : item.sending}"
+            ng-repeat="item in data.chat.messages | limitTo : data.limitTo track by $index">
           <div class="item-head">
-            <div class="item-time" ng-bind="item.created_at | fromNow"></div>
+            <div class="item-time">{{item.created_at | fromNow}}</div>
           </div>
-          <div class="item-content flex-align-top">
-            <div class="item-before" ng-if="item.user_id !== currentUser.id">
-              <img class="item-media" src="assets/images/image-loading.gif" lazy-src="{{data.users[item.user_id].avatar}}" />
-            </div>
+          <div class="item-body">
+            <img class="item-media" lazy-src="{{data.chat.users[item.user_id].avatar}}"/>
             <div class="item-inner">
               <div class="inner-content">
-                <div class="item-title" ng-bind="data.users[item.user_id].nickname"></div>
+                <div class="item-title">{{data.chat.users[item.user_id].nickname}}</div>
                 <p class="item-subtitle type-{{item.type}}" ng-bind-html="item.content_html"></p>
               </div>
-            </div>
-            <div class="item-after" ng-if="item.user_id === currentUser.id">
-              <img class="item-media" src="assets/images/image-loading.gif" lazy-src="{{data.users[item.user_id].avatar}}" />
             </div>
           </div>
         </li>

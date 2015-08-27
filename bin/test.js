@@ -1,6 +1,7 @@
-var User    = require('../models').user;
-var Chat    = require('../models').chat;
-var Message = require('../models').message;
+var modules = require('../server/models');
+var User    = modules.user;
+var Chat    = modules.chat;
+var Message = modules.message;
 var _       = require('lodash');
 var Q       = require('q');
 

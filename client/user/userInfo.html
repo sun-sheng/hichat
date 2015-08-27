@@ -42,15 +42,6 @@
       <li class="list-item">
         <div class="item-content">
           <div class="item-before">
-            城市
-          </div>
-          <div class="item-inner"></div>
-          <div class="item-after" ng-bind="item.city"></div>
-        </div>
-      </li>
-      <li class="list-item">
-        <div class="item-content">
-          <div class="item-before">
             手机
           </div>
           <div class="item-inner"></div>
@@ -68,6 +59,15 @@
           <div class="item-after">
             {{currentUser.email}}
           </div>
+        </div>
+      </li>
+      <li class="list-item">
+        <div class="item-content">
+          <div class="item-before">
+            城市
+          </div>
+          <div class="item-inner"></div>
+          <div class="item-after" ng-bind="currentUser.city"></div>
         </div>
       </li>
     </ul>

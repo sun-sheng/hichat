@@ -1,11 +1,9 @@
 var User       = require('../models/').user;
-var faker      = require('faker');
 var _          = require('lodash');
 var util       = require('../util');
 var OnlineUser = require('./OnlineUser');
 var Q          = require('q');
 var uuid       = require('node-uuid');
-faker.locale   = 'en'; //'zh_CN'
 
 module.exports = {
 

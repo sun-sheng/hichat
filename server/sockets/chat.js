@@ -25,8 +25,6 @@ module.exports = function (socket) {
       console.log('register access_token is : ' + user.access_token);
       var messages = _.where(memory_messages, {receiver_id: user.id});
       user.socket.emit('messages', messages);
-    }, function (err) {
-      console.log(err);
     });
   });
   socket.on('message', function (message) {

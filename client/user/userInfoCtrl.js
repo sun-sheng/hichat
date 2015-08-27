@@ -1,3 +1,4 @@
+/*@ngInject*/
 module.exports = function ($q, $scope, $rootScope, userService, camera, fileTransfer, device, modal, toast) {
 
   var loading = false;

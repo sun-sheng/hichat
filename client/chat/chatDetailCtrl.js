@@ -1,26 +1,26 @@
 /*@ngInject*/
-module.exports = function ($scope, $templateCache, settings, chatService, contactService, modal, util, camera, toast) {
+module.exports = function ($rootScope, $scope, $templateCache, router, settings, chatService, modal, util, camera, toast) {
 
-  var loading = false;
-  var chat    = $scope.f7page.query;
+  var chat    = router.getF7pageQuery($scope.f7page);
   var data    = {
     chat: chat,
     text: '',
-    limitTo: - settings.page_size_sm
+    limitTo: 0
   };
+  $scope.data = data;
 
-  var $list = $$($scope.f7page.container).find('.chat-message-list');
-
-  var compile_messages = Template7.compile($templateCache.get('chat-message-t7.html'));
+  var $scroll          = $$($scope.f7page.container).find('[infinite-scroll]');
+  var $list            = $scroll.find('.chat-message-list');
+  //var compile_messages = Template7.compile($templateCache.get('chat-message-t7.html'));
 
   var events = [{
     event: 'click',
     selector: '.list-item .item-subtitle img',
     element: $list,
     handler: function (e) {
-      var $images = $list.find('.list-item .item-subtitle img');
-      var photos = [];
-      var target_src = e.target.getAttribute('src');
+      var $images      = $list.find('.list-item .item-subtitle img');
+      var photos       = [];
+      var target_src   = e.target.getAttribute('src');
       var target_index = 0;
       $images.each(function (i, ele) {
         var src = ele.getAttribute('src');
@@ -40,27 +40,19 @@ module.exports = function ($scope, $templateCache, settings, chatService, contac
     util.unbindEvents(events);
   });
 
-  contactService.load().then(function (contacts) {
-    data.users = {};
-    _.each(contacts, function (contact) {
-      data.users[contact.id] = contact;
-    });
-    $scope.data = data;
-
-  });
-
   $scope.loadMore = function () {
-    if (loading || data.limitTo < - data.chat.messages.length) return false;
+    if (data.isEnd) return false;
+    var scrollBottom = $scroll[0].scrollHeight - $scroll.scrollTop();
     data.limitTo -= settings.page_size_sm;
-    data.isEnd = data.limitTo < - data.chat.messages.length;
-    if (data.isEnd) {
-      data.limitTo = - data.chat.messages.length;
-    }
+    var min = - chat.messages.length;
+    data.limitTo = data.limitTo > min ? data.limitTo : min;
+    data.isEnd = data.limitTo === min;
     $scope.$digest();
+    $scroll.scrollTop($scroll[0].scrollHeight - scrollBottom);
   };
 
   $scope.toggleInputActions = function () {
-    $scope.inputActionsVisiable = ! $scope.inputActionsVisiable;
+    $scope.inputActionsVisiable = !$scope.inputActionsVisiable;
   };
 
   $scope.sendImageByCamera = function () {
@@ -75,7 +67,7 @@ module.exports = function ($scope, $templateCache, settings, chatService, contac
     });
   };
 
-  function sendImage (uri) {
+  function sendImage(uri) {
     chatService.sendMessage({
       content: uri,
       type: 'image',
@@ -93,5 +85,7 @@ module.exports = function ($scope, $templateCache, settings, chatService, contac
       toast.error('消息发送失败' + err.msg);
     });
   };
+
+  setTimeout($scope.loadMore, 1000);
 
 };

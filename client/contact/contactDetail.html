@@ -6,52 +6,60 @@
       <div class="avatar-box">
         <img src="assets/images/image-loading.gif" lazy-src="{{contact.avatar}}" alt="" class="avatar"/>
       </div>
-      <div class="title" ng-bind="contact.name"></div>
-      <div class="subtitle">
-        {{contact.gender | gender}}
-        {{contact.city}}
+      <div class="detail-title">
+        {{contact.name}}
+        <span class="float-right">{{contact.gender | gender}}</span>
+      </div>
+      <div class="detail-subtitle">
+        {{contact.nickname}}
       </div>
     </div>
-    <ul class="list">
-      <li class="list-item">
-        <div class="item-content">
-          <div class="item-inner">
-            <div class="inner-content">
-              <div class="item-title">{{contact.nickname}}</div>
-              <div class="item-subtitle">昵称</div>
+    <div class="ng-hide" ng-show="isContact">
+      <p class="detail-signature" ng-bind="contact.signature"></p>
+      <ul class="list">
+        <li class="list-item" ng-click="showActionSheet()">
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="inner-content">
+                <div class="item-title">{{contact.mobile ? contact.mobile : '未绑定'}}</div>
+                <div class="item-subtitle">手机</div>
+              </div>
+            </div>
+            <div class="item-after">
+              <i class="item-icon ico-phone"></i>
             </div>
           </div>
-          <div class="item-after">
-            <i class="item-icon ico-email"></i>
-          </div>
-        </div>
-      </li>
-      <li class="list-item" ng-click="showActionSheet()">
-        <div class="item-content">
-          <div class="item-inner">
-            <div class="inner-content">
-              <div class="item-title">{{contact.mobile ? contact.mobile : '未绑定'}}</div>
-              <div class="item-subtitle">手机</div>
+        </li>
+        <li class="list-item">
+          <a class="item-link external" href="mailto:{{contact.email}}">
+            <div class="item-inner">
+              <div class="inner-content">
+                <div class="item-title">{{contact.email}}</div>
+                <div class="item-subtitle">邮箱</div>
+              </div>
+            </div>
+            <div class="item-after">
+              <i class="item-icon ico-email"></i>
+            </div>
+          </a>
+        </li>
+        <li class="list-item">
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="inner-content">
+                <div class="item-title">{{contact.city}}</div>
+                <div class="item-subtitle">城市</div>
+              </div>
+            </div>
+            <div class="item-after">
+              <i class="item-icon ico-my-location"></i>
             </div>
           </div>
-          <div class="item-after">
-            <i class="item-icon ico-phone"></i>
-          </div>
-        </div>
-      </li>
-      <li class="list-item">
-        <a class="item-link external" href="mailto:{{contact.email}}">
-          <div class="item-inner">
-            <div class="inner-content">
-              <div class="item-title">{{contact.email}}</div>
-              <div class="item-subtitle">邮箱</div>
-            </div>
-          </div>
-          <div class="item-after">
-            <i class="item-icon ico-email"></i>
-          </div>
-        </a>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="ng-hide padding-15" ng-show="!isContact">
+      <button class="btn btn-block btn-success">添加联系人</button>
+    </div>
   </div>
 </div>

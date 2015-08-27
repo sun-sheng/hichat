@@ -4,7 +4,7 @@ module.exports = function ($q, $rootScope, i18n, settings, constants, router, de
   function deviceReady() {
     device.init();
     backButton.init();
-    router.start();
+    router.init();
   }
 
   $rootScope.ui = {
@@ -42,39 +42,7 @@ module.exports = function ($q, $rootScope, i18n, settings, constants, router, de
     modalPreloaderTitle: i18n.global.loading
   });
 
-  window.f7MainView = f7.addView('#main-view');
-
-  f7.onPageInit('*', function (page) {
-    try {
-      var dom        = page.container;
-      var $element   = angular.element(dom);
-      var $injector  = $element.injector();
-      var $compile   = $injector.get('$compile');
-      var $link      = $compile($element);
-      var $scope     = $element.scope().$new();
-      $scope.f7page  = page;
-      page.container = $link($scope);
-      //$scope.$digest();
-    }
-    catch (e) {
-      logger.error('onPageInit', e.message, e.stack);
-    }
-  });
-
-  f7.onPageBeforeRemove('*', function (page) {
-    //reload 时不触发 before remove ，移至 before animation
-    //$$('input:focus').blur();
-    try {
-      var dom    = page.container;
-      var $scope = angular.element(dom).scope();
-      $scope.$destroy();
-    }
-    catch (e) {
-      logger.error('onPageBeforeRemove', e.message, e.stack);
-    }
-  });
-
-  f7.onPageBeforeAnimation('*', function (page) {
+  f7.onPageBeforeAnimation('*', function () {
     //键盘输入
     $$('input:focus').blur();
   });

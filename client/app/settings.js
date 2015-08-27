@@ -17,17 +17,16 @@ var settings = {
   defaultAvatar: 'assets/images/avatar.png'
 };
 if (window.APP_MODEL === 'DEV') {
-  //todo 修改本机 IP 方便手机测试
+  settings.apiOrigin = 'http://127.0.0.1:5001/api/';
+  settings.chatSocket = 'http://127.0.0.1:5001/';
+}
+else if (window.APP_MODEL === 'TEST') {
   settings.apiOrigin = 'http://192.168.1.103:5001/api/';
   settings.chatSocket = 'http://192.168.1.103:5001/';
 }
-else if (window.APP_MODEL === 'TEST') {
-  settings.apiOrigin = 'http://10.97.192.140:5001/api/';
-  settings.chatSocket = 'http://10.97.192.140:5001/';
-}
 else if (window.APP_MODEL === 'DIST') {
-  settings.apiOrigin = 'http://10.97.192.140:5001/api/';
-  settings.chatSocket = 'http://10.97.192.140:5001/';
+  settings.apiOrigin = 'http://hichat.duapp.com/api/';
+  settings.chatSocket = 'http://hichat.duapp.com/';
 }
 
 module.exports = settings;

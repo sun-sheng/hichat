@@ -1,0 +1,19 @@
+<div class="page chat-config-page" ng-controller="chatConfigCtrl">
+
+  <navbar title="{{chat.title}}"></navbar>
+  
+  <!-- page content -->
+  <div class="page-content no-scroll">
+    <div class="native-scroll-box">
+      <div class="grid chat-users">
+        <div class="grid-row">
+          <div f7route="'contactDetail.html'" f7route-query="item" class="grid-col-3 chat-user" ng-repeat="item in chat.users">
+            <img class="item-icon" lazy-src="{{item.avatar}}"/>
+            <div class="item-text">{{item.nickname}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

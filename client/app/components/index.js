@@ -18,7 +18,7 @@ module.exports = angular.module(
   'storage', require('./storage')
 ).factory(
   'temp', require('./temp')
-).factory(
+).provider(
   'toast', require('./toast')
 ).factory(
   'util', require('./util')

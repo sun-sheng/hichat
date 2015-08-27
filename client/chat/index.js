@@ -4,6 +4,8 @@ module.exports = angular.module(
   'chatMainCtrl', require('./chatMainCtrl')
 ).controller(
   'chatDetailCtrl', require('./chatDetailCtrl')
+).controller(
+  'chatConfigCtrl', require('./chatConfigCtrl')
 ).factory(
   'chatService', require('./chatService')
 ).name;

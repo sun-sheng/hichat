@@ -129,6 +129,7 @@ gulp.task('concat-lib-js', function () {
     './bower_components/moment/moment.js',
     './bower_components/moment/locale/zh-cn.js',
     './bower_components/framework7/dist/js/framework7.js',
+    './bower_components/ui-toast/dist/toast.js',
     './bower_components/angular/angular.js',
     './bower_components/angular-forage/src/angular-forage.js',
     './bower_components/angular-animate/angular-animate.js',
@@ -141,7 +142,8 @@ gulp.task('concat-lib-js', function () {
 });
 gulp.task('concat-lib-css', function () {
   return gulp.src([
-    './bower_components/framework7/dist/css/framework7.css'
+    './bower_components/framework7/dist/css/framework7.css',
+    './bower_components/ui-toast/dist/toast.css'
   ]).pipe(
     concat('lib.css')
   ).pipe(
@@ -156,6 +158,7 @@ gulp.task('concat-all-js', function () {
     './bower_components/moment/min/moment.min.js',
     './bower_components/moment/locale/zh-cn.js',
     './bower_components/framework7/dist/js/framework7.min.js',
+    './bower_components/ui-toast/dist/toast.min.js',
     './bower_components/angular/angular.min.js',
     './bower_components/angular-forage/dist/angular-forage.min.js',
     './bower_components/angular-animate/angular-animate.min.js',
@@ -171,6 +174,7 @@ gulp.task('concat-all-js', function () {
 gulp.task('concat-all-css', function () {
   return gulp.src([
     './bower_components/framework7/dist/css/framework7.min.css',
+    './bower_components/ui-toast/dist/toast.min.css',
     './www/app.min.css'
   ]).pipe(
     concat('app.bundler.css')
@@ -192,21 +196,21 @@ gulp.task('replace-html', function () {
 gulp.task('replace-cordova-html:dev', function () {
   replaceHtmlOptions.model.tpl = replaceHtmlOptionsModelTpl.replace('[MODEL]', 'DEV');
   //todo
-  replaceHtmlOptions.socket    = '';
+  replaceHtmlOptions.socket    = 'http://192.168.1.103:5001/socket.io/socket.io.js';
   replaceHtmlOptions.cordova   = 'cordova.js';
   replaceHtmlDest              = './cordova/www';
   gulp.start('replace-html');
 });
 gulp.task('replace-cordova-html:test', function () {
   replaceHtmlOptions.model.tpl = replaceHtmlOptionsModelTpl.replace('[MODEL]', 'TEST');
-  replaceHtmlOptions.socket    = '';
+  replaceHtmlOptions.socket    = 'http://192.168.1.103:5001/socket.io/socket.io.js';
   replaceHtmlOptions.cordova   = 'cordova.js';
   replaceHtmlDest              = './cordova/www';
   gulp.start('replace-html');
 });
 gulp.task('replace-cordova-html:dist', function () {
   replaceHtmlOptions.model.tpl = replaceHtmlOptionsModelTpl.replace('[MODEL]', 'DIST');
-  replaceHtmlOptions.socket    = '';
+  replaceHtmlOptions.socket    = 'http://hichat.duapp.com/socket.io/socket.io.js';
   replaceHtmlOptions.cordova   = 'cordova.js';
   replaceHtmlDest              = './cordova/www';
   gulp.start('replace-html');

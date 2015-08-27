@@ -1,5 +1,5 @@
-var _          = require('lodash');
-var User       = require('../services/User');
+var _    = require('lodash');
+var User = require('../services/User');
 
 exports.create = function (req, res) {
   User.create(req.body).then(function (user) {
@@ -11,7 +11,7 @@ exports.create = function (req, res) {
 
 exports.update = function (req, res) {
   var user = req.body;
-  user.id = user.id || req.params.user_id;
+  user.id  = user.id || req.params.user_id;
   User.update(user).then(function (user) {
     res.json(user);
   }, function (err) {
@@ -23,7 +23,6 @@ exports.login = function (req, res) {
   User.login(req.body).then(function (user) {
     res.json(user);
   }, function (err) {
-    console.log(err);
     res.json(err.code, err.message);
   });
 };

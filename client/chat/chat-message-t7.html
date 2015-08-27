@@ -1,22 +1,17 @@
 {{#each messages}}
 <li class="list-item {{className}}">
   <div class="item-head">
-    <div class="item-time">{{created_at_text}}</div>
+    <div class="item-time">{{from_now}}</div>
   </div>
-  <div class="item-content flex-align-top">
-    <div class="item-before">
-      <img class="item-media" src="{{avatar}}"/>
-    </div>
+  <div class="item-body">
+    <img class="item-media" src="{{user_avatar}}"/>
     <div class="item-inner">
       <div class="inner-content">
-        <div class="item-title">{{nickname}}</div>
+        <div class="item-title">{{user_nickname}}</div>
         <p class="item-subtitle type-{{type}}">
           {{content_html}}
         </p>
       </div>
-    </div>
-    <div class="item-after">
-      <img class="item-media" src="{{avatar}}"/>
     </div>
   </div>
 </li>

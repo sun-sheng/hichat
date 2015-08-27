@@ -2,7 +2,6 @@
 
 ##init build variable
 buildModel=''
-bdBranch='eve'
 
 ##judge the input param
 if [ $# = 1 ]
@@ -11,15 +10,9 @@ then
 else
 	buildModel='test'
 fi
-##
-if [ $buildModel = 'dist' ]
-then
-	bdBranch='eve-publish'
-fi
 
 ##echo build model
 echo 'YOU BUILD MODEL:' $buildModel
-echo 'THE BD BRANCH:' $bdBranch
 
 ##let you choose continue or stop
 echo 'y or n'
@@ -42,8 +35,6 @@ gulp release:$buildModel &&
 cp -rf www cordova/
 gulp replace-cordova-html:$buildModel &&
 cd cordova &&
-git clone git@git.elenet.me:bpm/mortred.git www/mortred -b $bdBranch &&
 cordova build android --release &&
-cordova build ios &&
 echo 'done.'
 ##build process
