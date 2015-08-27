@@ -39,6 +39,7 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
         if (index !== -1) chat.messages[index] = message;
       } else {
         chat.messages.push(message);
+        chat.updated_at = message.created_at;
         chat.unread++;
         $rootScope.ui.unreadMessagesCount++;
       }
@@ -86,6 +87,7 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
         CHATS = {};
         _.each(results, function (item) {
           item.messages = [];
+          item.unread   = 0;
         });
         return $forage.iterate(function (chat, key) {
           if (key.indexOf(constants.FORAGE_KEY.CHAT_PREFIX) !== 0) return true;
@@ -108,7 +110,9 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
     load: function () {
       return $forage.iterate(function (chat, key) {
         if (key.indexOf(constants.FORAGE_KEY.CHAT_PREFIX) !== 0) return true;
+        chat.unread = chat.unread || 0;
         CHATS[chat.id] = chat;
+        $rootScope.ui.unreadMessagesCount += chat.unread;
       }).then(function () {
         if (_.size(CHATS) > 0) return CHATS;
         return $q.reject();
@@ -143,9 +147,9 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
         message.created_at = Date.now();
         message.updated_at = message.created_at;
         //todo
-        message.client_id  = message.created_at + '';
-        message.sending    = true;
-        var chat           = service.get(message.chat_id);
+        message.client_id = message.created_at + '';
+        message.sending   = true;
+        var chat          = service.get(message.chat_id);
         socket.emit('message', message);
         chat.messages.push(convertMessage(message));
         resolve();
@@ -159,10 +163,11 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
           receiver_id: $rootScope.currentUser.id
         }
       }).then(function (response) {
-        var messages  = response.data;
+        var messages    = response.data;
         _.each(messages, convertMessage);
-        var chat      = service.get(chat_id);
-        chat.messages = messages;
+        var chat        = service.get(chat_id);
+        chat.messages   = messages;
+        chat.updated_at = _.last(messages).created_at;
         return $forage.set(getChatKey(chat_id), chat).then(function (chat) {
           CHATS[chat.id] = chat;
           return chat;

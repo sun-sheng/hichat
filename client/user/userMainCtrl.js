@@ -12,7 +12,7 @@ module.exports = function ($scope, $rootScope, router, userService, modal, toast
         $rootScope.notSaveEveActiveTabIndex = true;
         router.reload();
       }, function (err) {
-        toast.err('退出失败：' + err.msg);
+        toast.error('退出失败：' + err.msg);
       }).finally(function () {
         loading = false;
         modal.hideIndicator();

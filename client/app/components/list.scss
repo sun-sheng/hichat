@@ -57,6 +57,7 @@
         .item-title
         {
           display     : block;
+          box-sizing  : border-box;
           width       : 100%;
           font-size   : 15px;
           line-height : 20px;
@@ -64,6 +65,7 @@
         .item-subtitle
         {
           display     : block;
+          box-sizing  : border-box;
           width       : 100%;
           font-size   : 12px;
           line-height : 16px;

@@ -7,7 +7,7 @@
     <div pull-to-refresh="refresh()" data-ptr-ready="load()">
 
       <ul class="list chat-list">
-        <li class="list-item gap-10" ng-repeat="item in data.chats">
+        <li class="list-item gap-10" ng-repeat="item in data.chats | orderBy:'updated_at':true ">
           <div f7route="'chatDetail.html'" f7route-query="item" class="item-content">
             <div class="item-before position-relative">
               <img src="assets/images/image-loading.gif" lazy-src="{{item.icon}}" class="item-media"/>
@@ -26,7 +26,7 @@
                     {{item.messages[item.messages.length - 1].type === 'image' ? '[图片]' : ''}}
                     {{item.messages[item.messages.length - 1].type === 'link' ? '[链接]' : ''}}
                   </span>
-                  <span ng-show="item.unread > 0" class="text-badge bg-danger float-right">
+                  <span ng-show="item.unread > 0" class="text-badge">
                     {{item.unread < 99 ? item.unread: '99+'}}
                   </span>
                 </div>

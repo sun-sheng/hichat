@@ -8,7 +8,8 @@ module.exports = function ($q, $rootScope, i18n, settings, constants, router, de
   }
 
   $rootScope.ui = {
-    activeTabIndex: 0
+    activeTabIndex: 0,
+    unreadMessagesCount: 0
   };
 
   //

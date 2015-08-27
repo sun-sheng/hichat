@@ -2,7 +2,22 @@
 {
   .item-subtitle
   {
+    position: relative;
     padding-right : 15px;
+    .text-badge
+    {
+      box-sizing: border-box;
+      background-color: $color-danger;
+      position: absolute;
+      right: 0;
+      top : 0;
+      bottom: 0;
+      margin: auto;
+      font-size: 10px;
+      height: 1.5em;
+      border-radius: 0.75em;
+      padding: 0.25em 0.5em;
+    }
   }
 }
 

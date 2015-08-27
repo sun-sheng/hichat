@@ -47,7 +47,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('copy', function () {
-  return gulp.src('./client/assets').pipe(gulp.dest(DEST));
+  return gulp.src('./client/assets/**').pipe(gulp.dest(DEST + '/assets/'));
 });
 
 gulp.task('browserify', function () {

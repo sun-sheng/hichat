@@ -10,8 +10,8 @@
       <a class="tab-link" ng-class="{'active': ui.activeTabIndex === 0}" ng-click="ui.activeTabIndex = 0">
         <span class="tabbar-icon ico-message">
           <span ng-show="ui.unreadMessagesCount > 0" class="ui-badge">
-            <span class="badge-inner bg-red">
-                {{ui.unreadMessagesCount < 99 ? ui.unreadMessagesCount : '99+'}}
+            <span class="badge-inner bg-danger">
+              {{ui.unreadMessagesCount < 99 ? ui.unreadMessagesCount : '99+'}}
             </span>
           </span>
         </span>
