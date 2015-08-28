@@ -64,7 +64,8 @@ body {
   color: #ddd;
   margin-bottom: 30px;
 }
-.content-inner .link
+.content-inner .link:hover {color: #fff}
+.content-inner .button
 {
   display: inline-block;
   background: #fff;
