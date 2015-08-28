@@ -1,0 +1,133 @@
+@font-face {
+  font-family: 'AvenirNextLTPro-Regular';
+  src: url('fonts/28882F_0_0.eot');
+  src: url('fonts/28882F_0_0.eot?#iefix') format('embedded-opentype'),
+  url('fonts/28882F_0_0.woff') format('woff'),
+  url('fonts/28882F_0_0.ttf') format('truetype');
+}
+html {
+  height : 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  min-height: 600px;
+  font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5em;
+  background: #0e419b;
+  background: -moz-linear-gradient(left, #0e419b 0%, #19859c 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, #0e419b), color-stop(100%, #19859c));
+  background: -webkit-linear-gradient(left, #0e419b 0%, #19859c 100%);
+  background: -o-linear-gradient(left, #0e419b 0%, #19859c 100%);
+  background: -ms-linear-gradient(left, #0e419b 0%, #19859c 100%);
+  background: linear-gradient(to right, #0e419b 0%, #19859c 100%);
+}
+#content {
+  width: 900px;
+  margin: auto;
+  height: 100%;
+  padding-bottom: 80px;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+.content-box
+{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.content-inner
+{
+  position: absolute;
+  height: 300px;
+  left: 0;
+  top : 0;
+  bottom: 0;
+  margin: auto;
+}
+.content-inner .title
+{
+  font-size: 42px;
+  line-height: 42px;
+  font-weight: normal;
+  margin: 0 0 20px;
+}
+.content-inner .info
+{
+  font-size: 20px;
+  line-height: 40px;
+  margin-top: 0;
+  color: #ddd;
+  margin-bottom: 30px;
+}
+.content-inner .link
+{
+  display: inline-block;
+  background: #fff;
+  border-radius: 5px;
+  color: #04499e;
+  font-size: 24px;
+  line-height: 30px;
+  padding: 15px 1em;
+}
+.content-inner .qr-code
+{
+  width: 120px;
+  height: 120px;
+}
+
+.frame-box
+{
+  position: absolute;
+  width: 320px;
+  max-height: 600px;
+  top : 0;
+  right : 0;
+  bottom: 0;
+  margin: auto;
+}
+.frame-box iframe
+{
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+#footer
+{
+  position: fixed;
+  left : 0;
+  right : 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .15);
+}
+
+.footer-inner
+{
+  width: 900px;
+  box-sizing: border-box;
+  margin: auto;
+  padding: 20px 0;
+  line-height: 40px;
+  color: #fff;
+}
+
+a, a:hover, a:active {color: inherit; text-decoration: none}
+
+.footer-inner .icon
+{
+  cursor: pointer;
+  color: #ccc;
+  margin-right: 30px;
+}
+
+.footer-inner .icon:hover {color: #fff}
+
+.fa {
+  line-height: inherit;
+  margin-right: 0.5em;
+}
