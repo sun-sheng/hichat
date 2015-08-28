@@ -30,7 +30,6 @@ hichat
     cordova create cordova org.upsun.hichat Hi.Chat
     cp -rf cordova_files/** cordova
     cd cordova
-    cordova platform add ios
     cordova platform add android
     //
     cordova plugin add cordova-plugin-device cordova-plugin-dialogs cordova-plugin-inappbrowser cordova-plugin-camera cordova-plugin-file cordova-plugin-file-transfer
@@ -47,8 +46,6 @@ hichat
 
 ### 3.项目发布
     ./cordova/build.sh dev|test|dist
-    
-#### 3.1 ios 发布
-    Xcode -> Product -> Archive
+
 
 
