@@ -9,19 +9,22 @@
 
 .about-page
 {
+  color: #fff;
+  text-align : center;
   .logo
   {
-    width         : 104px;
-    height        : 95px;
+    width         : 100px;
+    height        : 100px;
     display       : block;
     margin        : auto;
     margin-top    : 50px;
     margin-bottom : 40px;
+    font-size     : 80px;
+    line-height   : 100px;
   }
-  .version
+  .page-content
   {
-    text-align : center;
-    color      : $color-text-light;
+    background-color: $color-primary;
   }
 }
 
@@ -71,32 +74,6 @@
 #entrance-main-screen
 {
   background-color : $color-primary;
-  .logo
-  {
-    width    : 104px;
-    height   : 95px;
-    position : absolute;
-    top      : 0;
-    left     : 0;
-    right    : 0;
-    bottom   : 0;
-    margin   : auto;
-  }
-  .logo-bg
-  {
-    display : block;
-    width   : 104px;
-    height  : 95px;
-  }
-  .logo-inner
-  {
-    @include animation-spin;
-    position : absolute;
-    width    : 27px;
-    height   : 27px;
-    left     : 41px;
-    bottom   : 19px;
-  }
   .screen-footer
   {
     padding       : 15px;

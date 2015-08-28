@@ -4,7 +4,9 @@
   "description": "a simple chat app",
   "repository": "http://gitbub.com/sun-sheng/hichat",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "postinstall": "node ./bin/init.js"
+  },
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-browserify": "^0.5.1",

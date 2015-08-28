@@ -7,6 +7,121 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
 
   <title>Hi.Chat</title>
+
+  <style>
+    @-webkit-keyframes rotate_pac_man_half_up {
+      0% {
+        -webkit-transform: rotate(270deg);
+        transform: rotate(270deg); }
+      50% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg); }
+      100% {
+        -webkit-transform: rotate(270deg);
+        transform: rotate(270deg); } }
+    @keyframes rotate_pac_man_half_up {
+      0% {
+        -webkit-transform: rotate(270deg);
+        transform: rotate(270deg); }
+      50% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg); }
+      100% {
+        -webkit-transform: rotate(270deg);
+        transform: rotate(270deg); } }
+    @-webkit-keyframes rotate_pac_man_half_down {
+      0% {
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg); }
+      50% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg); }
+      100% {
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg); } }
+    @keyframes rotate_pac_man_half_down {
+      0% {
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg); }
+      50% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg); }
+      100% {
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg); } }
+    @-webkit-keyframes pac-man-loader-balls {
+      75% {
+        opacity: 0.7; }
+      100% {
+        -webkit-transform: translate(-100px, -6.25px);
+        transform: translate(-100px, -6.25px); } }
+    @keyframes pac-man-loader-balls {
+      75% {
+        opacity: 0.7; }
+      100% {
+        -webkit-transform: translate(-100px, -6.25px);
+        transform: translate(-100px, -6.25px); } }
+    .pac-man-loader {
+      position: absolute;
+      width: 100px;
+      height: 50px;
+      top: 0;
+      bottom: 0;
+      left: 50px;
+      right: 0;
+      margin: auto;
+    }
+    .pac-man-loader > div:nth-child(2) {
+      -webkit-animation: pac-man-loader-balls 1s -0.99s infinite linear;
+      animation: pac-man-loader-balls 1s -0.99s infinite linear; }
+    .pac-man-loader > div:nth-child(3) {
+      -webkit-animation: pac-man-loader-balls 1s -0.66s infinite linear;
+      animation: pac-man-loader-balls 1s -0.66s infinite linear; }
+    .pac-man-loader > div:nth-child(4) {
+      -webkit-animation: pac-man-loader-balls 1s -0.33s infinite linear;
+      animation: pac-man-loader-balls 1s -0.33s infinite linear; }
+    .pac-man-loader > div:nth-child(5) {
+      -webkit-animation: pac-man-loader-balls 1s 0s infinite linear;
+      animation: pac-man-loader-balls 1s 0s infinite linear; }
+    .pac-man-loader > div:first-of-type {
+      width: 0;
+      height: 0;
+      border-right: 25px solid transparent;
+      border-top: 25px solid #fff;
+      border-left: 25px solid #fff;
+      border-bottom: 25px solid #fff;
+      border-radius: 25px;
+      -webkit-animation: rotate_pac_man_half_up 0.5s 0s infinite;
+      animation: rotate_pac_man_half_up 0.5s 0s infinite;
+      position: relative;
+      left: -30px; }
+    .pac-man-loader > div:nth-child(2) {
+      width: 0;
+      height: 0;
+      border-right: 25px solid transparent;
+      border-top: 25px solid #fff;
+      border-left: 25px solid #fff;
+      border-bottom: 25px solid #fff;
+      border-radius: 25px;
+      -webkit-animation: rotate_pac_man_half_down 0.5s 0s infinite;
+      animation: rotate_pac_man_half_down 0.5s 0s infinite;
+      margin-top: -50px;
+      position: relative;
+      left: -30px; }
+    .pac-man-loader > div:nth-child(3), .pac-man-loader > div:nth-child(4), .pac-man-loader > div:nth-child(5), .pac-man-loader > div:nth-child(6) {
+      background-color: #fff;
+      border-radius: 100%;
+      margin: 2px;
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      -webkit-transform: translate(0, -6.25px);
+      -ms-transform: translate(0, -6.25px);
+      transform: translate(0, -6.25px);
+      top: 25px;
+      left: 70px; }
+  </style>
+
   <!-- build:css -->
   <link rel="stylesheet" type="text/css" href="index.scss">
   <!-- endbuild -->
@@ -19,12 +134,15 @@
 
 <div id="entrance-screens" class="screens">
   <div id="entrance-main-screen" class="screen">
-    <div class="logo">
-      <img class="logo-bg" src="assets/images/logo.png"/>
-      <img class="logo-inner" src="assets/images/logo-inner.png"/>
+    <div class="pac-man-loader">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
     <div class="screen-footer">
-      正在加载中，请稍后<i class="dotting"></i>
+      正在加载中，请稍后
     </div>
   </div>
 </div>

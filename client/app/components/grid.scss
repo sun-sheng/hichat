@@ -1,5 +1,6 @@
 .grid
 {
+  padding : 0 15px;
   &.no-gutter
   {
     .grid-row
@@ -14,10 +15,10 @@
 
   &.gutter-10
   {
-    padding: 0 5px;
+    padding : 0 5px;
     .grid-row
     {
-      margin: 0 -5px;
+      margin : 0 -5px;
     }
     [class^="grid-col-"]
     {
@@ -27,7 +28,7 @@
 
   &.gutter-20
   {
-    padding: 0 10px;
+    padding : 0 10px;
     .grid-row
     {
       margin : 0 -10px;
@@ -37,28 +38,47 @@
       padding : 0 10px;
     }
   }
-
-
-  padding: 0 15px;
-  .grid-row
-  {
-    margin : 0 -15px;
-  }
-  [class^="grid-col-"]
-  {
-    padding : 0 15px;
-  }
 }
 
 .grid-row
 {
   @include clearfix;
+  margin : 0 -15px;
 
   [class^="grid-col-"]
   {
     float      : left;
+    padding    : 0 15px;
     box-sizing : border-box;
   }
+
+  &.no-gutter
+  {
+    margin : 0;
+    [class^="grid-col-"]
+    {
+      padding : 0;
+    }
+  }
+
+  &.gutter-10
+  {
+    margin : 0 -5px;
+    [class^="grid-col-"]
+    {
+      padding : 0 5px;
+    }
+  }
+
+  &.gutter-20
+  {
+    margin : 0 -10px;
+    [class^="grid-col-"]
+    {
+      padding : 0 10px;
+    }
+  }
+
   .grid-col-1
   {
     width : percentage(1/12);

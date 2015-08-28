@@ -8,8 +8,10 @@ hichat
     * ruby
     * python
     * jdk
-#### 1.2 安装 cordova bower gulp nodemon
+    * mongodb
+#### 1.2 安装 cordova bower gulp nodemon ruby-sass
     npm install -g cordova bower gulp nodemon
+    gem install sass
 #### 1.3 安装 android-sdk 
     brew install android-sdk
     android 
@@ -24,6 +26,7 @@ hichat
         Android Support Repository
         Android Support Library
 #### 1.6 初始化
+    start mongodb service
     npm install
     bower install
     //

@@ -1,7 +1,10 @@
 <div id="user-login-page" data-page="login" class="page" ng-controller="userLoginCtrl"
      ng-class="{initialized: initialized, loading: loading}">
 
-  <img class="logo" src="assets/images/logo.png" ng-click="randomUser()"/>
+  <div class="logo" ng-click="randomUser()">
+    <i class="ico ico-bubbles"></i>
+    hi.chat
+  </div>
 
   <form name="form" class="login-form form" novalidate>
     <ul class="list">
@@ -28,7 +31,7 @@
     </ul>
     <button class="btn btn-block submit-btn" ng-class="loading ? 'loading' : ''" ng-click="login()"
             data-ng-disabled="loading || form.$invalid">
-      <span ng-bind="loading ? '登录中…' : '登录'"></span>
+      <span ng-bind="loading ? '登录中…' : '登 录'"></span>
       <span class="btn-spinner ico-loading"></span>
     </button>
   </form>

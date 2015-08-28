@@ -1,15 +1,32 @@
 @font-face
 {
+  font-family : 'ionic';
+  src         : url('assets/fonts/ionic.woff') format('woff'), url('assets/fonts/ionic.ttf') format('truetype');
+}
+
+@font-face
+{
+  font-family : 'ionic-lt';
+  src         : url('assets/fonts/ionic-lt.woff') format('woff'), url('assets/fonts/ionic-lt.ttf') format('truetype');
+}
+
+/* Freight Text Pro */
+@font-face
+{
+  font-family : 'ionic-text';
+  src         : url('assets/fonts/ionic-text.woff') format('woff'), url('assets/fonts/ionic-text.ttf') format('truetype');
+}
+
+@font-face
+{
   font-family : 'lcd';
-  src         : url('assets/fonts/lcd.woff') format('woff'),
-  url('assets/fonts/lcd.ttf') format('truetype');
+  src         : url('assets/fonts/lcd.woff') format('woff'), url('assets/fonts/lcd.ttf') format('truetype');
 }
 
 @font-face
 {
   font-family : 'ico';
-  src         : url('assets/fonts/ico.ttf') format('truetype'),
-  url('assets/fonts/ico.woff') format('woff');
+  src         : url('assets/fonts/ico.ttf') format('truetype'), url('assets/fonts/ico.woff') format('woff');
 }
 
 [class^="ico-"], [class*=" ico-"]
@@ -171,6 +188,9 @@
 }
 .ico-camera2:before {
   content: "\e605";
+}
+.ico-bubbles:before {
+  content: "\e609";
 }
 .ico-spinner2:before {
   content: "\e606";
