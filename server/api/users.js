@@ -31,3 +31,15 @@ exports.logout = function (req, res) {
   User.logout(req.user);
   res.json('success');
 };
+
+exports.findNicknames = function (req, res) {
+  User.find().then(function (users) {
+    var names = [];
+    _.each(users, function (user) {
+      names.push(user.nickname);
+    });
+    res.json(names);
+  }, function (err) {
+    res.json(err.code, err.message);
+  });
+};

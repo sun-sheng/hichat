@@ -31,16 +31,21 @@ var replaceHtmlOptions         = {
 };
 var replaceHtmlOptionsModelTpl = '<script type="text/javascript">window.APP_MODEL = "[MODEL]";</script>';
 var replaceHtmlDest            = './www';
-var DEST = './www';
+var DEST                       = './www';
+var DEBUG                      = false;
 
 gulp.task('clean', function () {
   return gulp.src(
     [
-      './www/',
-      '!./www/assets/',
-      './cordova/www/'
+      './www/app.js',
+      './www/app.css',
+      './www/app.min.js',
+      './www/app.min.css',
+      './www/app-templates.js',
+      './www/lib.js',
+      './www/lib.css'
     ],
-    { read: false }
+    {read: false}
   ).pipe(
     clean()
   );
@@ -55,7 +60,7 @@ gulp.task('browserify', function () {
     './client/index.js'
   ).pipe(
     browserify({
-      debug: process.env.MODEL !== 'release'
+      debug: DEBUG
     })
   ).pipe(
     rename('app.js')
@@ -64,7 +69,7 @@ gulp.task('browserify', function () {
   );
 });
 //
-gulp.task('uglify', ['browserify', 'ng-templates'], function () {
+gulp.task('uglify', ['browserify'], function () {
   return gulp.src(
     './www/app.js'
   ).pipe(
@@ -101,7 +106,7 @@ gulp.task('minify-css', ['scss'], function () {
 });
 
 gulp.task('ng-templates', function () {
-  gulp.src([
+  return gulp.src([
     './client/**/*.html',
     '!./client/index.html'
   ]).pipe(
@@ -155,7 +160,7 @@ gulp.task('concat-lib-css', function () {
   );
 });
 
-gulp.task('concat-all-js', function () {
+gulp.task('concat-all-js', ['uglify', 'ng-templates'], function () {
   return gulp.src([
     './bower_components/lodash/lodash.min.js',
     './bower_components/localforage/dist/localforage.min.js',
@@ -175,7 +180,7 @@ gulp.task('concat-all-js', function () {
     gulp.dest(DEST)
   );
 });
-gulp.task('concat-all-css', function () {
+gulp.task('concat-all-css', ['minify-css'], function () {
   return gulp.src([
     './bower_components/framework7/dist/css/framework7.min.css',
     './bower_components/ui-toast/dist/toast.min.css',
@@ -200,9 +205,9 @@ gulp.task('replace-html', function () {
 gulp.task('replace-cordova-html:dev', function () {
   replaceHtmlOptions.model.tpl = replaceHtmlOptionsModelTpl.replace('[MODEL]', 'DEV');
   //todo
-  replaceHtmlOptions.socket    = 'http://192.168.1.103:5001/socket.io/socket.io.js';
-  replaceHtmlOptions.cordova   = 'cordova.js';
-  replaceHtmlDest              = './cordova/www';
+  replaceHtmlOptions.socket  = 'http://192.168.1.103:5001/socket.io/socket.io.js';
+  replaceHtmlOptions.cordova = 'cordova.js';
+  replaceHtmlDest            = './cordova/www';
   gulp.start('replace-html');
 });
 gulp.task('replace-cordova-html:test', function () {
@@ -247,9 +252,13 @@ gulp.task('open-browser', function () {
   );
 });
 
-gulp.task('dev-base', ['copy', 'concat-lib-js', 'concat-lib-css', 'browserify', 'ng-templates', 'scss'], function () {
-  replaceHtmlOptions.js = ['lib.js', 'app.js', 'app-templates.js'];
-  replaceHtmlOptions.css = ['lib.css', 'app.css'];
+gulp.task('set-debug-model', function () {
+  DEBUG = true;
+});
+
+gulp.task('dev-base', ['set-debug-model', 'copy', 'concat-lib-js', 'concat-lib-css', 'browserify', 'ng-templates', 'scss'], function () {
+  replaceHtmlOptions.js        = ['lib.js', 'app.js', 'app-templates.js'];
+  replaceHtmlOptions.css       = ['lib.css', 'app.css'];
   replaceHtmlOptions.model.tpl = replaceHtmlOptionsModelTpl.replace('[MODEL]', 'DEV');
   gulp.start('replace-html');
 });
@@ -258,8 +267,8 @@ gulp.task('dev', ['dev-base', 'server', 'watch'], function () {
   gulp.start('open-browser');
 });
 
-gulp.task('release-base', ['copy', 'minify-css', 'uglify'], function () {
-  gulp.start(['concat-all-js', 'concat-all-css']);
+gulp.task('release-base', ['copy', 'concat-all-js', 'concat-all-css'], function () {
+  gulp.start(['clean']);
 });
 
 gulp.task('release:dev', ['release-base'], function () {

@@ -39,7 +39,7 @@
   {
     transition         : transform 0.4s ease 0.6s;
     -webkit-transition : -webkit-transform 0.4s ease 0.6s;
-    @include transform(scale3d(1, 0, 0));
+    @include transform(scale3d(1, 0, 1));
     display            : block;
     height             : 183px;
     position           : absolute;

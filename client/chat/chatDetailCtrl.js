@@ -37,8 +37,7 @@ module.exports = function ($rootScope, $scope, $templateCache, router, settings,
   util.bindEvents(events);
 
   $scope.$on('$destroy', function () {
-    $rootScope.ui.unreadMessagesCount -= chat.unread;
-    chat.unread = 0;
+    chatService.readMessages(chat);
     util.unbindEvents(events);
   });
 

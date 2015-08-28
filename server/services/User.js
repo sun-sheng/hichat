@@ -12,6 +12,7 @@ module.exports = {
   },
   find: function (options) {
     return Q.Promise(function (resolve, reject) {
+      options = options || {};
       options.deleted = false;
       User.find(options, function (err, users) {
         if (err) return reject(util.createMongooseError(err));
@@ -22,6 +23,7 @@ module.exports = {
   },
   findOne: function (options) {
     return Q.Promise(function (resolve, reject) {
+      options = options || {};
       options.deleted = false;
       User.findOne(options, function (err, user) {
         if (err) return reject(util.createMongooseError(err));

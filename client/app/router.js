@@ -13,7 +13,7 @@ module.exports = function ($rootScope, $templateCache, $http, $q, constants, $fo
 
       f7.onPageInit('*', function (page) {
         try {
-          if (page.from !== 'left') router.setF7pageQuery(page);
+          if (page.from !== 'left' || ! _.isEmpty(page.query)) router.setF7pageQuery(page);
           var dom        = page.container;
           var $element   = angular.element(dom);
           var $injector  = $element.injector();

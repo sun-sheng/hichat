@@ -15,6 +15,8 @@ module.exports = {
   },
   find: function (options) {
     return Q.Promise(function (resolve, reject) {
+      options = options || {};
+      options.deleted = false;
       Chat.find(options, function (err, chats) {
         if (err) return reject(util.createMongooseError(err));
         chats = chats || [];

@@ -16,6 +16,14 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
     };
   }
 
+  function toArray (obj) {
+    var results = [];
+    _.each(obj, function (item) {
+      results.push(item);
+    });
+    return results;
+  }
+
   function convertMessage(message) {
     if (message.type === 'image') {
       message.content_html = util.replace('<img src="$1"/>', message.content);
@@ -39,10 +47,10 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
         if (index !== -1) chat.messages[index] = message;
       } else {
         chat.messages.push(message);
-        chat.updated_at = message.created_at;
         chat.unread++;
         $rootScope.ui.unreadMessagesCount++;
       }
+      chat.updated_at = message.created_at;
       return chat;
     }).then(function (chat) {
       var forage_key = getChatKey(chat.id);
@@ -87,7 +95,7 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
         CHATS = {};
         _.each(results, function (item) {
           item.messages = [];
-          item.unread   = 0;
+          item.unread   = item.unread || 0;
         });
         return $forage.iterate(function (chat, key) {
           if (key.indexOf(constants.FORAGE_KEY.CHAT_PREFIX) !== 0) return true;
@@ -102,7 +110,7 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
             CHATS[chat.id] = chat;
             $forage.set(getChatKey(chat.id), chat);
           });
-          return CHATS;
+          return toArray(CHATS);
         });
       });
     },
@@ -114,7 +122,7 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
         CHATS[chat.id] = chat;
         $rootScope.ui.unreadMessagesCount += chat.unread;
       }).then(function () {
-        if (_.size(CHATS) > 0) return CHATS;
+        if (_.size(CHATS) > 0) return toArray(CHATS);
         return $q.reject();
       }).catch(this.fetch);
     },
@@ -139,23 +147,6 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
 
     },
 
-    sendMessage: function (message) {
-      return $q(function (resolve, reject) {
-        if (!(message.chat_id && message.content)) return reject({msg: '消息格式有误'});
-        message.user_id    = $rootScope.currentUser.id;
-        message.type       = message.type || 'text';
-        message.created_at = Date.now();
-        message.updated_at = message.created_at;
-        //todo
-        message.client_id = message.created_at + '';
-        message.sending   = true;
-        var chat          = service.get(message.chat_id);
-        socket.emit('message', message);
-        chat.messages.push(convertMessage(message));
-        resolve();
-      });
-    },
-
     fetchMessages: function (chat_id) {
       return $http.get(settings.apiOrigin + 'messages', {
         params: {
@@ -172,6 +163,32 @@ module.exports = function ($rootScope, $http, $q, $forage, settings, constants, 
           CHATS[chat.id] = chat;
           return chat;
         });
+      });
+    },
+
+    readMessages: function (chat) {
+      $rootScope.ui.unreadMessagesCount -= chat.unread;
+      chat.unread = 0;
+      //$rootScope.$digest();
+      $forage.set(getChatKey(chat.id), chat).then(function (chat) {
+        //do nothing
+      });
+    },
+
+    sendMessage: function (message) {
+      return $q(function (resolve, reject) {
+        if (!(message.chat_id && message.content)) return reject({msg: '消息格式有误'});
+        message.user_id    = $rootScope.currentUser.id;
+        message.type       = message.type || 'text';
+        message.created_at = Date.now();
+        message.updated_at = message.created_at;
+        //todo
+        message.client_id = message.created_at + '';
+        message.sending   = true;
+        var chat          = service.get(message.chat_id);
+        socket.emit('message', message);
+        chat.messages.push(convertMessage(message));
+        resolve();
       });
     }
 

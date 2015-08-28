@@ -18,6 +18,7 @@ router.post('/messages', middleware.auth, messages.create);
 router.delete('/messages/:message_id', middleware.auth, messages.remove);
 
 router.post('/users', users.create);
+router.get('/users/nicknames', users.findNicknames);
 router.post('/users/login', users.login);
 router.post('/users/logout', middleware.auth, users.logout);
 

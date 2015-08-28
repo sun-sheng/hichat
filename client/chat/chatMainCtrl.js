@@ -11,9 +11,9 @@ module.exports = function ($scope, settings, chatService, modal, toast) {
     modal.showIndicator();
     chatService.load().then(function (chats) {
       data.chats = chats;
-      data.isEmpty = _.keys(chats).length === 0;
+      data.isEmpty = chats.length === 0;
       _.each(chats, function (chat) {
-        if (!chat.messages.length) fetchMessages(chat);
+        if (chat.messages.length === 0) fetchMessages(chat);
       });
     }, function (err) {
       toast.error('获取聊天信息失败：' + err.msg);

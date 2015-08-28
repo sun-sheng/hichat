@@ -7,7 +7,7 @@
     <div pull-to-refresh="refresh()" data-ptr-ready="load()">
 
       <ul class="list chat-list">
-        <li class="list-item gap-10" ng-repeat="item in data.chats | orderBy:'updated_at':true ">
+        <li class="list-item gap-10" ng-repeat="item in data.chats | orderBy:'updated_at':true track by $index">
           <div f7route="'chatDetail.html'" f7route-query="item" class="item-content">
             <div class="item-before position-relative">
               <img src="assets/images/image-loading.gif" lazy-src="{{item.icon}}" class="item-media"/>
