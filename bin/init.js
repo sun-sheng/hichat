@@ -5,7 +5,6 @@ var Message = modules.message;
 var faker   = require('faker');
 var _       = require('lodash');
 var Q       = require('q');
-faker.lang  = 'zh_CN';
 
 var temp = {
   users: [],
@@ -179,7 +178,7 @@ function initChats() {
     if (num > max) num = max;
     for (i; i < num; i++) {
       var contact_id = user.contact_ids[i];
-      var exist    = _.some(chats, function (chat) {
+      var exist      = _.some(chats, function (chat) {
         var ids = chat.user_ids;
         if (ids === 2) {
           if (ids[0] === user_id && ids[1] === contact_id) return true;
